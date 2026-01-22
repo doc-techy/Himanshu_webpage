@@ -17,6 +17,24 @@ const BlogsVideosSection = () => {
       description: "Essential tips and guidelines for optimal recovery post-surgery.",
       type: "Video",
       date: "Jan 5, 2026"
+    },
+    {
+      title: "Sports Injury Prevention",
+      description: "Key strategies to prevent sports-related injuries and maintain peak performance.",
+      type: "Blog",
+      date: "Jan 3, 2026"
+    },
+    {
+      title: "Arthroscopy Benefits",
+      description: "Discover the advantages of minimally invasive arthroscopic procedures.",
+      type: "Video",
+      date: "Dec 28, 2025"
+    },
+    {
+      title: "Pediatric Orthopaedic Care",
+      description: "Specialized approaches to treating bone and joint conditions in children.",
+      type: "Blog",
+      date: "Dec 25, 2025"
     }
   ];
 
@@ -29,38 +47,38 @@ const BlogsVideosSection = () => {
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex flex-col z-10">
-        <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl mb-4">
+        <div className="text-center mb-4 md:mb-6 pt-10 md:pt-12 -mt-8 md:-mt-10">
+          <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl mb-3">
             Blogs & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Education Videos</span>
           </h2>
-          <div className="w-24 h-1 bg-[#d5a028] mx-auto"></div>
+          <div className="w-20 h-0.5 bg-[#d5a028] mx-auto"></div>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-3 flex-1 items-center">
+        <div className="grid gap-4 md:grid-cols-3 flex-1 items-center">
           {blogs.map((item, index) => (
             <div
               key={index}
-              className="group relative rounded-2xl bg-white/10 backdrop-blur-md border-2 border-white/20 p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-[#d5a028]/50 hover:bg-white/15"
+              className="group relative rounded-xl bg-white/10 backdrop-blur-md border-2 border-white/20 p-4 md:p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#d5a028]/50 hover:bg-white/15"
             >
               {/* Type Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#d5a028]/20 border border-[#d5a028]/30 mb-4">
-                <span className="text-xs font-semibold text-[#d5a028] uppercase tracking-wide">{item.type}</span>
+              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#d5a028]/20 border border-[#d5a028]/30 mb-2">
+                <span className="text-[10px] font-semibold text-[#d5a028] uppercase tracking-wide">{item.type}</span>
               </div>
 
               {/* Content */}
-              <h3 className="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-[#f4c430] transition-colors">
+              <h3 className="text-sm md:text-base font-bold text-white mb-2 group-hover:text-[#f4c430] transition-colors">
                 {item.title}
               </h3>
-              <p className="text-white/90 leading-relaxed text-base md:text-lg lg:text-xl mb-4">
+              <p className="text-white/90 leading-relaxed text-xs md:text-sm lg:text-base mb-3">
                 {item.description}
               </p>
 
               {/* Date and Read More */}
-              <div className="flex items-center justify-between border-t border-white/20 pt-4">
-                <span className="text-sm text-white/70">{item.date}</span>
-                <div className="flex items-center gap-2 text-[#d5a028] font-semibold group-hover:gap-3 transition-all">
-                  <span className="text-sm">Read More</span>
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-between border-t border-white/20 pt-2">
+                <span className="text-xs text-white/70">{item.date}</span>
+                <div className="flex items-center gap-1.5 text-[#d5a028] font-semibold group-hover:gap-2 transition-all">
+                  <span className="text-xs">Read More</span>
+                  <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>

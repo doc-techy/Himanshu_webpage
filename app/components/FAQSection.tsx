@@ -39,29 +39,29 @@ const FAQSection = () => {
   return (
     <section id="faq" className="relative w-full h-screen bg-white pt-20 md:pt-24 pb-8 md:pb-12 lg:pb-16 overflow-hidden">
       <div className="mx-auto w-full max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex flex-col">
-        <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-4xl font-bold text-[#0b6f66] md:text-5xl lg:text-6xl mb-4">
+        <div className="text-center mb-4 md:mb-6 pt-10 md:pt-12 -mt-8 md:-mt-10">
+          <h2 className="text-3xl font-bold text-[#0b6f66] md:text-4xl lg:text-5xl mb-3">
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Questions</span>
           </h2>
-          <div className="w-24 h-1 bg-[#d5a028] mx-auto"></div>
+          <div className="w-20 h-0.5 bg-[#d5a028] mx-auto"></div>
         </div>
         
         <div className="flex-1 flex items-center">
-          <div className="w-full max-w-4xl mx-auto space-y-4">
+          <div className="w-full max-w-3xl mx-auto space-y-2">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="group rounded-2xl bg-white border-2 border-[#e6e3df] shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group rounded-xl bg-white border-2 border-[#e6e3df] shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-5 md:px-8 md:py-6 flex items-center justify-between text-left focus:outline-none"
+                  className="w-full px-4 py-3 md:px-5 md:py-3.5 flex items-center justify-between text-left focus:outline-none"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-[#0b6f66] pr-4">
+                  <h3 className="text-sm md:text-base font-bold text-[#0b6f66] pr-3">
                     {faq.question}
                   </h3>
                   <svg
-                    className={`w-6 h-6 text-[#d5a028] flex-shrink-0 transition-transform duration-300 ${
+                    className={`w-4 h-4 text-[#d5a028] flex-shrink-0 transition-transform duration-300 ${
                       openIndex === index ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -76,8 +76,8 @@ const FAQSection = () => {
                     openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="px-6 md:px-8 pb-5 md:pb-6">
-                    <p className="text-base leading-relaxed text-[#4a5c63] md:text-lg">
+                  <div className="px-4 md:px-5 pb-3 md:pb-4">
+                    <p className="text-xs leading-relaxed text-[#4a5c63] md:text-sm lg:text-base">
                       {faq.answer}
                     </p>
                   </div>
