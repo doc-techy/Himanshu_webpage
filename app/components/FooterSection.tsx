@@ -2,10 +2,13 @@ import Link from "next/link";
 
 const FooterSection = () => {
   return (
-    <footer className="relative w-full bg-gradient-to-br from-[#1a4d47] to-[#0f3a35] text-white border-t-4 border-[#d5a028] overflow-hidden">
+    <footer className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] text-white border-t-4 border-[#d5a028] overflow-hidden">
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/25 pointer-events-none"></div>
+      
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d5a028]/5 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#d5a028]/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
       </div>
 

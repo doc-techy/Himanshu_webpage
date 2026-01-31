@@ -85,11 +85,14 @@ export default function ServicesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gray-50 text-[#18333b] overflow-x-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] text-white overflow-x-hidden">
+      {/* Dark overlay */}
+      <div className="fixed inset-0 bg-black/20 pointer-events-none z-0"></div>
+      
       <Header />
       
       {/* Hero Section */}
-      <section className="relative w-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] pt-24 md:pt-28 pb-8 md:pb-12">
+      <section className="relative w-full pt-24 md:pt-28 pb-8 md:pb-12 z-10">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-4">
             <Link 
@@ -116,29 +119,29 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Detail Section */}
-      <section className="w-full py-8 md:py-12">
+      <section className="relative w-full py-8 md:py-12 z-10">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 md:space-y-8">
             {services.map((service, index) => (
               <div
                 key={index}
                 id={service.id}
-                className="scroll-mt-24 group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all overflow-hidden"
+                className="scroll-mt-24 group bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row">
                   {/* Left - Icon & Title */}
-                  <div className="bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] p-4 md:p-6 md:w-1/3 flex flex-col items-center justify-center text-center">
+                  <div className="bg-[#d5a028]/20 p-4 md:p-6 md:w-1/3 flex flex-col items-center justify-center text-center">
                     <div className="text-4xl md:text-5xl mb-2">{service.icon}</div>
                     <h2 className="text-lg md:text-xl font-bold text-white">{service.title}</h2>
                   </div>
                   
                   {/* Right - Details */}
                   <div className="p-4 md:p-6 md:w-2/3">
-                    <p className="text-sm md:text-base text-gray-600 mb-4">
+                    <p className="text-sm md:text-base text-white/80 mb-4">
                       {service.description}
                     </p>
                     
-                    <h3 className="text-sm font-bold text-[#0b6f66] mb-2 flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-[#d5a028] mb-2 flex items-center gap-2">
                       <svg className="w-4 h-4 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -147,7 +150,7 @@ export default function ServicesPage() {
                     
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {service.offerings.map((offering, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs md:text-sm text-gray-700">
+                        <li key={i} className="flex items-start gap-2 text-xs md:text-sm text-white/80">
                           <svg className="w-4 h-4 text-[#d5a028] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
@@ -156,10 +159,10 @@ export default function ServicesPage() {
                       ))}
                     </ul>
                     
-                    <div className="mt-4 pt-4 border-t border-gray-100">
+                    <div className="mt-4 pt-4 border-t border-white/20">
                       <a 
                         href="/#contact"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#0b6f66] hover:text-[#d5a028] transition-colors"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#d5a028] hover:text-[#f4c430] transition-colors"
                       >
                         Book Consultation
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -176,7 +179,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] py-10 md:py-14">
+      <section className="relative w-full py-10 md:py-14 z-10">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl mb-4">
             Ready to Begin Your Recovery?

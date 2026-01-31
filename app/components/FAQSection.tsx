@@ -37,21 +37,24 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="relative w-full bg-gradient-to-b from-gray-50 to-white py-12 md:py-20 lg:py-24 overflow-hidden">
+    <section id="faq" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-12 md:py-20 lg:py-24 overflow-hidden">
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+      
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-[#0b6f66]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-[#d5a028]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-[#d5a028]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl font-bold text-[#0b6f66] sm:text-3xl md:text-4xl lg:text-5xl mb-3">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl mb-3">
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Questions</span>
           </h2>
           <div className="w-16 md:w-20 h-1 bg-[#d5a028] mx-auto mb-3"></div>
-          <p className="text-sm text-gray-600 md:text-base max-w-xl mx-auto">
+          <p className="text-sm text-white/80 md:text-base max-w-xl mx-auto">
             Find answers to common questions about our services and treatments
           </p>
         </div>
@@ -61,8 +64,8 @@ const FAQSection = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`group rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden ${
-                openIndex === index ? "ring-2 ring-[#0b6f66]/20" : ""
+              className={`group rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden ${
+                openIndex === index ? "ring-2 ring-[#d5a028]/50 bg-white/15" : ""
               }`}
             >
               <button
@@ -72,24 +75,22 @@ const FAQSection = () => {
                 <div className="flex items-start gap-3">
                   <div className={`flex-shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                     openIndex === index 
-                      ? "bg-[#0b6f66] text-white" 
-                      : "bg-[#0b6f66]/10 text-[#0b6f66]"
+                      ? "bg-[#d5a028] text-white" 
+                      : "bg-white/20 text-white"
                   }`}>
                     {index + 1}
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-gray-800 leading-snug">
+                  <h3 className="text-sm md:text-base font-semibold text-white leading-snug">
                     {faq.question}
                   </h3>
                 </div>
                 <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
                   openIndex === index 
                     ? "bg-[#d5a028] rotate-180" 
-                    : "bg-gray-100 group-hover:bg-[#d5a028]/20"
+                    : "bg-white/20 group-hover:bg-[#d5a028]/50"
                 }`}>
                   <svg
-                    className={`w-3.5 h-3.5 transition-colors ${
-                      openIndex === index ? "text-white" : "text-gray-500"
-                    }`}
+                    className="w-3.5 h-3.5 text-white transition-colors"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -104,7 +105,7 @@ const FAQSection = () => {
                 }`}
               >
                 <div className="px-4 md:px-5 pb-4 md:pb-5 pl-[52px] md:pl-[60px]">
-                  <p className="text-xs md:text-sm leading-relaxed text-gray-600">
+                  <p className="text-xs md:text-sm leading-relaxed text-white/80">
                     {faq.answer}
                   </p>
                 </div>
@@ -115,12 +116,12 @@ const FAQSection = () => {
 
         {/* Contact CTA */}
         <div className="mt-8 md:mt-12 text-center">
-          <p className="text-sm text-gray-600 mb-3">
+          <p className="text-sm text-white/80 mb-3">
             Still have questions?
           </p>
           <a 
             href="/#contact" 
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0b6f66] text-white text-sm font-semibold rounded-lg hover:bg-[#095c54] transition-colors shadow-md hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#d5a028] text-white text-sm font-semibold rounded-lg hover:bg-[#c08f1f] transition-colors shadow-md hover:shadow-lg"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />

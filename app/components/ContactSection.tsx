@@ -1,20 +1,20 @@
 const ContactSection = () => {
   return (
-    <section id="contact" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-12 md:py-20 lg:py-24 overflow-hidden">
+    <section id="contact" className="relative w-full bg-white py-12 md:py-20 lg:py-24 overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 w-64 md:w-96 h-64 md:h-96 bg-[#d5a028]/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-20 -left-20 w-64 md:w-96 h-64 md:h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-20 -right-20 w-64 md:w-96 h-64 md:h-96 bg-[#0b6f66]/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-64 md:w-96 h-64 md:h-96 bg-[#d5a028]/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl mb-3">
+          <h2 className="text-2xl font-bold text-[#0b6f66] sm:text-3xl md:text-4xl lg:text-5xl mb-3">
             Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Us</span>
           </h2>
           <div className="w-16 md:w-20 h-1 bg-[#d5a028] mx-auto mb-3"></div>
-          <p className="text-sm text-white/80 md:text-base lg:text-lg max-w-xl mx-auto">
+          <p className="text-sm text-gray-600 md:text-base lg:text-lg max-w-xl mx-auto">
             Schedule your consultation and take the first step towards recovery
           </p>
         </div>
@@ -28,44 +28,44 @@ const ContactSection = () => {
               {/* Phone Card */}
               <a 
                 href="tel:+917282029272" 
-                className="group flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 hover:border-[#d5a028]/50 transition-all duration-300"
+                className="group flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-[#0b6f66]/30 transition-all duration-300"
               >
-                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#d5a028]/20 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-[#d5a028]/30 group-hover:scale-110 transition-all">
-                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#0b6f66]/10 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-[#0b6f66]/20 group-hover:scale-110 transition-all">
+                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <span className="text-[10px] md:text-xs text-white/70 mb-0.5">Call Us</span>
-                <span className="text-xs md:text-sm font-bold text-white text-center">+91 72820 29272</span>
+                <span className="text-[10px] md:text-xs text-gray-500 mb-0.5">Call Us</span>
+                <span className="text-xs md:text-sm font-bold text-[#0b6f66] text-center">+91 72820 29272</span>
               </a>
 
               {/* Email Card */}
               <a 
                 href="mailto:info@clinicrecover.com" 
-                className="group flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 hover:border-[#d5a028]/50 transition-all duration-300"
+                className="group flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:border-[#0b6f66]/30 transition-all duration-300"
               >
-                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#d5a028]/20 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-[#d5a028]/30 group-hover:scale-110 transition-all">
-                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#0b6f66]/10 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-[#0b6f66]/20 group-hover:scale-110 transition-all">
+                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <span className="text-[10px] md:text-xs text-white/70 mb-0.5">Email Us</span>
-                <span className="text-xs md:text-sm font-bold text-white text-center break-all">info@clinicrecover.com</span>
+                <span className="text-[10px] md:text-xs text-gray-500 mb-0.5">Email Us</span>
+                <span className="text-xs md:text-sm font-bold text-[#0b6f66] text-center break-all">info@clinicrecover.com</span>
               </a>
             </div>
 
             {/* Address Card with Map */}
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 md:p-6">
+            <div className="rounded-xl bg-white border border-gray-200 shadow-sm p-4 md:p-6">
               <div className="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
-                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#d5a028]/20 flex items-center justify-center flex-shrink-0">
-                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#0b6f66]/10 flex items-center justify-center flex-shrink-0">
+                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-sm md:text-base font-bold text-[#d5a028] mb-1">Visit Our Clinic</h3>
-                  <p className="text-xs md:text-sm leading-relaxed text-white/90">
+                  <h3 className="text-sm md:text-base font-bold text-[#0b6f66] mb-1">Visit Our Clinic</h3>
+                  <p className="text-xs md:text-sm leading-relaxed text-gray-600">
                     Recover Clinic, 34, 50 feet road,<br />
                     NGEF Layout, Postal Colony,<br />
                     Sanjayanagara, Bengaluru,<br />
@@ -74,7 +74,7 @@ const ContactSection = () => {
                 </div>
               </div>
               {/* Map Tile */}
-              <div className="relative rounded-lg overflow-hidden border border-white/20">
+              <div className="relative rounded-lg overflow-hidden border border-gray-200">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.7891234567891!2d77.5876543!3d13.0234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAxJzI0LjQiTiA3N8KwMzUnMTUuNiJF!5e0!3m2!1sen!2sin!4v1234567890123"
                   width="100%"
@@ -103,27 +103,27 @@ const ContactSection = () => {
             </div>
 
             {/* Clinic Hours */}
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 md:p-6">
+            <div className="rounded-xl bg-white border border-gray-200 shadow-sm p-4 md:p-6">
               <div className="flex items-start gap-3 md:gap-4">
-                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#d5a028]/20 flex items-center justify-center flex-shrink-0">
-                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-[#0b6f66]/10 flex items-center justify-center flex-shrink-0">
+                  <svg className="h-5 w-5 md:h-6 md:w-6 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm md:text-base font-bold text-[#d5a028] mb-2">Clinic Hours</h3>
-                  <div className="space-y-1.5 text-xs md:text-sm text-white/90">
+                  <h3 className="text-sm md:text-base font-bold text-[#0b6f66] mb-2">Clinic Hours</h3>
+                  <div className="space-y-1.5 text-xs md:text-sm text-gray-600">
                     <div className="flex justify-between">
                       <span>Monday - Friday</span>
-                      <span className="font-semibold">9:00 AM - 7:00 PM</span>
+                      <span className="font-semibold text-gray-800">9:00 AM - 7:00 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Saturday</span>
-                      <span className="font-semibold">9:00 AM - 2:00 PM</span>
+                      <span className="font-semibold text-gray-800">9:00 AM - 2:00 PM</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Sunday</span>
-                      <span className="font-semibold text-[#d5a028]">Closed</span>
+                      <span className="font-semibold text-red-500">Closed</span>
                     </div>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ const ContactSection = () => {
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 md:p-6 lg:p-8">
+          <div className="rounded-xl bg-[#0b6f66] shadow-xl p-4 md:p-6 lg:p-8">
             <h3 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Send us a Message</h3>
             <form className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">

@@ -84,10 +84,19 @@ const TestimonialsSection = () => {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section id="testimonials" className="relative w-full bg-white overflow-hidden py-8 md:py-16">
-      <div className="w-full flex flex-col">
+    <section id="testimonials" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] overflow-hidden py-8 md:py-16">
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
+      
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 right-10 w-48 h-48 md:w-72 lg:w-96 md:h-72 lg:h-96 bg-[#d5a028]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 md:w-72 lg:w-96 md:h-72 lg:h-96 bg-white/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative w-full flex flex-col z-10">
         <div className="text-center mb-4 md:mb-8 px-4">
-          <h2 className="text-2xl font-bold text-[#0b6f66] sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-4">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-4">
             Patient <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Testimonials</span>
           </h2>
           <div className="w-16 md:w-24 h-1 bg-[#d5a028] mx-auto"></div>
@@ -101,7 +110,7 @@ const TestimonialsSection = () => {
               {duplicatedTestimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="group relative flex-shrink-0 w-[55vw] sm:w-[45vw] md:w-[35vw] lg:w-[28vw] xl:w-[22vw] max-w-[280px] rounded-lg md:rounded-xl bg-white border border-[#e6e3df] md:border-2 p-3 md:p-5 shadow-md md:shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="group relative flex-shrink-0 w-[55vw] sm:w-[45vw] md:w-[35vw] lg:w-[28vw] xl:w-[22vw] max-w-[280px] rounded-lg md:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 md:p-5 hover:bg-white/15 transition-all duration-300 hover:-translate-y-1"
                 >
                   {/* Rating Stars */}
                   <div className="flex gap-0.5 mb-1.5 md:mb-2">
@@ -113,14 +122,14 @@ const TestimonialsSection = () => {
                   </div>
 
                   {/* Content */}
-                  <p className="text-[11px] leading-relaxed text-[#4a5c63] sm:text-xs md:text-sm lg:text-base mb-2 md:mb-3 line-clamp-4 md:line-clamp-none">
+                  <p className="text-[11px] leading-relaxed text-white/90 sm:text-xs md:text-sm lg:text-base mb-2 md:mb-3 line-clamp-4 md:line-clamp-none">
                     &ldquo;{testimonial.content}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="border-t border-[#e6e3df] pt-1.5 md:pt-2">
-                    <div className="font-bold text-[#0b6f66] text-xs md:text-sm lg:text-base">{testimonial.name}</div>
-                    <div className="text-[10px] md:text-xs lg:text-sm text-[#4a5c63] mt-0.5">{testimonial.role}</div>
+                  <div className="border-t border-white/20 pt-1.5 md:pt-2">
+                    <div className="font-bold text-[#d5a028] text-xs md:text-sm lg:text-base">{testimonial.name}</div>
+                    <div className="text-[10px] md:text-xs lg:text-sm text-white/70 mt-0.5">{testimonial.role}</div>
                   </div>
 
                 </div>
