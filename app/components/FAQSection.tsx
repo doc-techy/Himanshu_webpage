@@ -8,27 +8,27 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "What is robotic joint replacement?",
-      answer: "Robotic joint replacement is an advanced surgical technique that uses robotic assistance to achieve precise alignment and placement of joint implants. This technology allows for more accurate surgery, potentially leading to better outcomes, faster recovery, and longer-lasting results compared to traditional joint replacement."
+      answer: "Robotic joint replacement uses robotic assistance for precise alignment and placement of joint implants, leading to better outcomes, faster recovery, and longer-lasting results."
     },
     {
-      question: "How long does recovery take after orthopaedic surgery?",
-      answer: "Recovery time varies depending on the type of surgery and individual patient factors. Generally, patients can expect to resume light activities within 2-6 weeks, with full recovery typically taking 3-6 months. Our team provides personalized rehabilitation plans to ensure optimal recovery."
+      question: "How long does recovery take?",
+      answer: "Recovery varies by surgery type. Generally, light activities resume within 2-6 weeks, with full recovery in 3-6 months. We provide personalized rehabilitation plans."
     },
     {
       question: "What is the Ilizarov technique?",
-      answer: "The Ilizarov technique is a specialized method for limb reconstruction and deformity correction. It uses an external fixator frame with wires and rings that gradually correct bone deformities, lengthen limbs, or treat complex fractures. This technique is particularly effective for cases where traditional methods may not be suitable."
+      answer: "The Ilizarov technique uses an external fixator frame to gradually correct bone deformities, lengthen limbs, or treat complex fractures where traditional methods may not work."
     },
     {
       question: "Do you treat sports injuries?",
-      answer: "Yes, we specialize in sports medicine and treat a wide range of sports-related injuries including ligament tears, joint injuries, fractures, and overuse injuries. We use advanced arthroscopic techniques for minimally invasive treatment, allowing athletes to return to their sport faster."
+      answer: "Yes, we treat sports-related injuries including ligament tears, joint injuries, and fractures using advanced arthroscopic techniques for faster recovery."
     },
     {
-      question: "What should I bring to my first consultation?",
-      answer: "Please bring your medical records, previous X-rays or imaging studies, a list of current medications, insurance information, and any relevant medical history. It's also helpful to prepare a list of questions about your condition and treatment options."
+      question: "What should I bring to my first visit?",
+      answer: "Bring your medical records, X-rays or imaging studies, list of medications, insurance information, and any questions about your condition."
     },
     {
       question: "Is robotic surgery covered by insurance?",
-      answer: "Most insurance plans cover robotic joint replacement surgery as it's considered a standard treatment option. However, coverage may vary depending on your specific insurance plan. We recommend contacting your insurance provider or our office to verify coverage before scheduling your procedure."
+      answer: "Most insurance plans cover robotic joint replacement. Coverage varies by plan, so contact your provider or our office to verify before scheduling."
     }
   ];
 
@@ -37,32 +37,58 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="relative w-full h-screen bg-white pt-20 md:pt-24 pb-8 md:pb-12 lg:pb-16 overflow-hidden">
-      <div className="mx-auto w-full max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex flex-col">
-        <div className="text-center mb-4 md:mb-6 pt-10 md:pt-12 -mt-8 md:-mt-10">
-          <h2 className="text-3xl font-bold text-[#0b6f66] md:text-4xl lg:text-5xl mb-3">
+    <section id="faq" className="relative w-full bg-gradient-to-b from-gray-50 to-white py-12 md:py-20 lg:py-24 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-[#0b6f66]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-[#d5a028]/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+        {/* Header */}
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl font-bold text-[#0b6f66] sm:text-3xl md:text-4xl lg:text-5xl mb-3">
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Questions</span>
           </h2>
-          <div className="w-20 h-0.5 bg-[#d5a028] mx-auto"></div>
+          <div className="w-16 md:w-20 h-1 bg-[#d5a028] mx-auto mb-3"></div>
+          <p className="text-sm text-gray-600 md:text-base max-w-xl mx-auto">
+            Find answers to common questions about our services and treatments
+          </p>
         </div>
         
-        <div className="flex-1 flex items-center">
-          <div className="w-full max-w-3xl mx-auto space-y-2">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="group rounded-xl bg-white border-2 border-[#e6e3df] shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
+        {/* FAQ Grid - 2 columns on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 max-w-5xl mx-auto items-start">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className={`group rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden ${
+                openIndex === index ? "ring-2 ring-[#0b6f66]/20" : ""
+              }`}
+            >
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full px-4 py-3 md:px-5 md:py-4 flex items-start justify-between text-left focus:outline-none gap-3"
               >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-4 py-3 md:px-5 md:py-3.5 flex items-center justify-between text-left focus:outline-none"
-                >
-                  <h3 className="text-sm md:text-base font-bold text-[#0b6f66] pr-3">
+                <div className="flex items-start gap-3">
+                  <div className={`flex-shrink-0 w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                    openIndex === index 
+                      ? "bg-[#0b6f66] text-white" 
+                      : "bg-[#0b6f66]/10 text-[#0b6f66]"
+                  }`}>
+                    {index + 1}
+                  </div>
+                  <h3 className="text-sm md:text-base font-semibold text-gray-800 leading-snug">
                     {faq.question}
                   </h3>
+                </div>
+                <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all ${
+                  openIndex === index 
+                    ? "bg-[#d5a028] rotate-180" 
+                    : "bg-gray-100 group-hover:bg-[#d5a028]/20"
+                }`}>
                   <svg
-                    className={`w-4 h-4 text-[#d5a028] flex-shrink-0 transition-transform duration-300 ${
-                      openIndex === index ? "rotate-180" : ""
+                    className={`w-3.5 h-3.5 transition-colors ${
+                      openIndex === index ? "text-white" : "text-gray-500"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -70,24 +96,37 @@ const FAQSection = () => {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <div className="px-4 md:px-5 pb-3 md:pb-4">
-                    <p className="text-xs leading-relaxed text-[#4a5c63] md:text-sm lg:text-base">
-                      {faq.answer}
-                    </p>
-                  </div>
                 </div>
-                <div className={`h-1 bg-gradient-to-r from-[#d5a028] to-[#f4c430] transition-all duration-300 ${
-                  openIndex === index ? "opacity-100" : "opacity-0"
-                }`}></div>
+              </button>
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  openIndex === index ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="px-4 md:px-5 pb-4 md:pb-5 pl-[52px] md:pl-[60px]">
+                  <p className="text-xs md:text-sm leading-relaxed text-gray-600">
+                    {faq.answer}
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Contact CTA */}
+        <div className="mt-8 md:mt-12 text-center">
+          <p className="text-sm text-gray-600 mb-3">
+            Still have questions?
+          </p>
+          <a 
+            href="/#contact" 
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0b6f66] text-white text-sm font-semibold rounded-lg hover:bg-[#095c54] transition-colors shadow-md hover:shadow-lg"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Contact Us
+          </a>
         </div>
       </div>
     </section>

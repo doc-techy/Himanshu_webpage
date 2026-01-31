@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
@@ -6,100 +5,170 @@ import FooterSection from "../components/FooterSection";
 export default function ServicesPage() {
   const services = [
     {
-      title: "Robotic Joint Replacement",
-      description: "Advanced robotic-assisted procedures for hip and knee replacements with precision and faster recovery.",
-      icon: "🤖"
+      id: "orthopaedics",
+      title: "Orthopaedics",
+      icon: "🦴",
+      description: "Comprehensive orthopaedic care for all bone and joint conditions with advanced diagnostic and treatment approaches.",
+      offerings: [
+        "Complete bone and joint evaluation",
+        "Non-surgical treatment options",
+        "Surgical interventions when needed",
+        "Post-operative care and follow-up",
+        "Preventive care and counseling"
+      ]
     },
     {
+      id: "limb-reconstruction",
       title: "Limb Reconstruction",
-      description: "Specialized techniques for complex limb deformities and trauma reconstruction using Ilizarov method.",
-      icon: "🦴"
+      icon: "🔧",
+      description: "Advanced techniques for restoring limb function and structure using modern surgical methods.",
+      offerings: [
+        "Complex limb salvage procedures",
+        "Bone lengthening surgery",
+        "Malunion and non-union treatment",
+        "Post-traumatic reconstruction",
+        "Congenital deformity correction"
+      ]
     },
     {
-      title: "Sports Medicine",
-      description: "Comprehensive care for sports-related injuries and performance optimization for athletes.",
-      icon: "⚽"
+      id: "ilizarov",
+      title: "Ilizarov Technique",
+      icon: "⚙️",
+      description: "Specialized Ilizarov external fixation technique for correcting complex limb deformities and bone defects.",
+      offerings: [
+        "Limb lengthening procedures",
+        "Angular deformity correction",
+        "Bone transport for defects",
+        "Complex fracture management",
+        "Infection treatment with reconstruction"
+      ]
     },
     {
-      title: "Complex Trauma Care",
-      description: "Expert management of severe fractures, dislocations, and multi-trauma cases with evidence-based protocols.",
-      icon: "🏥"
+      id: "robotic-surgery",
+      title: "Robotic Joint Replacement",
+      icon: "🤖",
+      description: "Precision robotic-assisted joint replacement surgery for optimal alignment and faster recovery.",
+      offerings: [
+        "Robotic knee replacement",
+        "Robotic hip replacement",
+        "Partial knee replacement",
+        "Revision joint surgery",
+        "Computer-navigated procedures"
+      ]
     },
     {
-      title: "Arthroscopy",
-      description: "Minimally invasive diagnostic and surgical procedures for joint conditions with minimal scarring.",
-      icon: "🔬"
+      id: "arthroscopy",
+      title: "Arthroscopy & Sports Medicine",
+      icon: "🏃",
+      description: "Minimally invasive arthroscopic procedures and comprehensive sports injury management.",
+      offerings: [
+        "Knee arthroscopy (ACL, meniscus)",
+        "Shoulder arthroscopy",
+        "Sports injury treatment",
+        "Ligament reconstruction",
+        "Cartilage restoration"
+      ]
     },
     {
-      title: "Pediatric Orthopaedics",
-      description: "Specialized care for children's bone and joint conditions with age-appropriate treatment approaches.",
-      icon: "👶"
-    },
-    {
-      title: "Joint Preservation",
-      description: "Advanced techniques to preserve and restore joint function, delaying or avoiding joint replacement.",
-      icon: "🦵"
-    },
-    {
-      title: "Fracture Management",
-      description: "Expert treatment of all types of fractures using modern surgical and non-surgical techniques.",
-      icon: "🩹"
-    },
-    {
-      title: "Rehabilitation Services",
-      description: "Comprehensive post-surgical rehabilitation programs for optimal recovery and mobility restoration.",
-      icon: "🏃"
+      id: "fracture-spine",
+      title: "Fracture & Spine Care",
+      icon: "🏥",
+      description: "Expert management of fractures and comprehensive spine care services with modern techniques.",
+      offerings: [
+        "Emergency fracture care",
+        "Complex fracture fixation",
+        "Spine injury management",
+        "Degenerative spine treatment",
+        "Minimally invasive spine surgery"
+      ]
     }
   ];
 
   return (
-    <main className="min-h-screen bg-[#f3f2f0] text-[#18333b] overflow-x-hidden">
+    <main className="min-h-screen bg-gray-50 text-[#18333b] overflow-x-hidden">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative w-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] pt-20 md:pt-24 pb-6 md:pb-8">
+      <section className="relative w-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] pt-24 md:pt-28 pb-8 md:pb-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-4">
             <Link 
               href="/" 
-              className="inline-flex items-center gap-2 text-xs font-semibold text-white/90 hover:text-white transition"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white transition"
             >
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Back to Home
             </Link>
           </div>
           
-          <div className="text-center mb-4">
-            <h1 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl mb-2">
-              Our Services
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl mb-3">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Services</span>
             </h1>
-            <div className="w-24 h-1 bg-[#d5a028] mx-auto mb-3"></div>
-            <p className="text-base text-white/90 md:text-lg lg:text-xl max-w-3xl mx-auto">
-              Comprehensive orthopaedic care with cutting-edge technology and personalized treatment plans
+            <div className="w-20 h-1 bg-[#d5a028] mx-auto mb-4"></div>
+            <p className="text-sm text-white/90 md:text-base max-w-2xl mx-auto">
+              Comprehensive orthopaedic care with cutting-edge technology and personalized treatment
             </p>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="w-full bg-white py-6 md:py-8">
+      {/* Services Detail Section */}
+      <section className="w-full py-8 md:py-12">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-3 md:gap-4">
+          <div className="space-y-6 md:space-y-8">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group relative rounded-xl bg-white border border-[#e6e3df] p-3 md:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                id={service.id}
+                className="scroll-mt-24 group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all overflow-hidden"
               >
-                <div className="text-2xl md:text-3xl mb-2 text-center">{service.icon}</div>
-                <h3 className="text-lg md:text-xl font-bold text-[#0b6f66] mb-2 text-center">
-                  {service.title}
-                </h3>
-                <p className="text-base leading-relaxed text-[#4a5c63] md:text-lg lg:text-xl text-center">
-                  {service.description}
-                </p>
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d5a028] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                <div className="flex flex-col md:flex-row">
+                  {/* Left - Icon & Title */}
+                  <div className="bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] p-4 md:p-6 md:w-1/3 flex flex-col items-center justify-center text-center">
+                    <div className="text-4xl md:text-5xl mb-2">{service.icon}</div>
+                    <h2 className="text-lg md:text-xl font-bold text-white">{service.title}</h2>
+                  </div>
+                  
+                  {/* Right - Details */}
+                  <div className="p-4 md:p-6 md:w-2/3">
+                    <p className="text-sm md:text-base text-gray-600 mb-4">
+                      {service.description}
+                    </p>
+                    
+                    <h3 className="text-sm font-bold text-[#0b6f66] mb-2 flex items-center gap-2">
+                      <svg className="w-4 h-4 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                      What We Offer
+                    </h3>
+                    
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {service.offerings.map((offering, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs md:text-sm text-gray-700">
+                          <svg className="w-4 h-4 text-[#d5a028] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          {offering}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <a 
+                        href="/#contact"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-[#0b6f66] hover:text-[#d5a028] transition-colors"
+                      >
+                        Book Consultation
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -107,24 +176,24 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] py-16 md:py-20 lg:py-24">
+      <section className="w-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] py-10 md:py-14">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white md:text-5xl lg:text-6xl mb-6">
-            Ready to Begin Your Recovery Journey?
+          <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl mb-4">
+            Ready to Begin Your Recovery?
           </h2>
-          <p className="text-base text-white/90 md:text-lg lg:text-xl mb-8 max-w-2xl mx-auto">
+          <p className="text-sm text-white/90 md:text-base mb-6 max-w-xl mx-auto">
             Schedule a consultation with Dr. Himanshu Singh to discuss your treatment options
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="/#contact"
-              className="inline-flex items-center justify-center rounded-lg bg-[#d5a028] px-8 py-4 text-base font-bold uppercase tracking-wide text-white shadow-lg transition-all hover:bg-[#c08f1f] hover:shadow-xl hover:scale-105 md:px-10 md:py-4 md:text-lg"
+              className="inline-flex items-center justify-center rounded-lg bg-[#d5a028] px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:bg-[#c08f1f]"
             >
               Book an Appointment
             </a>
             <a
               href="tel:+917282029272"
-              className="inline-flex items-center justify-center rounded-lg border-2 border-white/30 bg-white/10 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/20 hover:border-white/50 md:px-10 md:py-4 md:text-lg"
+              className="inline-flex items-center justify-center rounded-lg border-2 border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/20"
             >
               Call: +91 72820 29272
             </a>

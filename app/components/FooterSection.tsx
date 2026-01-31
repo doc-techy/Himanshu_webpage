@@ -9,8 +9,8 @@ const FooterSection = () => {
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 md:py-16 z-10">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+      <div className="relative mx-auto w-full max-w-7xl px-4 pt-12 pb-6 sm:px-6 lg:px-8 md:pt-16 md:pb-8 z-10">
+        <div className="grid gap-10 lg:grid-cols-4 lg:gap-12">
           {/* Clinic Info */}
           <div className="space-y-4">
             <div className="mb-4">
@@ -40,82 +40,85 @@ const FooterSection = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <div className="mb-2">
-              <h3 className="text-xl font-bold text-[#d5a028] mb-2">Quick Links</h3>
-              <div className="w-12 h-0.5 bg-[#d5a028]"></div>
+          {/* Quick Links and Services - side by side on mobile */}
+          <div className="grid grid-cols-2 gap-6 lg:contents">
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <div className="mb-2">
+                <h3 className="text-xl font-bold text-[#d5a028] mb-2">Quick Links</h3>
+                <div className="w-12 h-0.5 bg-[#d5a028]"></div>
+              </div>
+              <ul className="space-y-3 text-sm text-white/90">
+                <li>
+                  <a href="/#home" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/#about" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">About Dr. Singh</span>
+                  </a>
+                </li>
+                <li>
+                  <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Our Services</span>
+                  </Link>
+                </li>
+                <li>
+                  <a href="/#contact" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Contact Us</span>
+                  </a>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm text-white/90">
-              <li>
-                <a href="/#home" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Home</span>
-                </a>
-              </li>
-              <li>
-                <a href="/#about" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">About Dr. Singh</span>
-                </a>
-              </li>
-              <li>
-                <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Our Services</span>
-                </Link>
-              </li>
-              <li>
-                <a href="/#contact" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Contact Us</span>
-                </a>
-              </li>
-            </ul>
+
+            {/* Services */}
+            <div className="space-y-4">
+              <div className="mb-2">
+                <h3 className="text-xl font-bold text-[#d5a028] mb-2">Our Services</h3>
+                <div className="w-12 h-0.5 bg-[#d5a028]"></div>
+              </div>
+              <ul className="space-y-3 text-sm text-white/90">
+                <li>
+                  <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Robotic Joint Replacement</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Limb Reconstruction</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Sports Medicine</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Complex Trauma Care</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
+                    <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="group-hover:translate-x-1 transition-transform">Arthroscopy</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          {/* Services */}
-          <div className="space-y-4">
-            <div className="mb-2">
-              <h3 className="text-xl font-bold text-[#d5a028] mb-2">Our Services</h3>
-              <div className="w-12 h-0.5 bg-[#d5a028]"></div>
-            </div>
-            <ul className="space-y-3 text-sm text-white/90">
-              <li>
-                <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Robotic Joint Replacement</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Limb Reconstruction</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Sports Medicine</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Complex Trauma Care</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="flex items-center gap-2 hover:text-[#d5a028] transition-all group">
-                  <span className="w-1.5 h-1.5 bg-[#d5a028] rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  <span className="group-hover:translate-x-1 transition-transform">Arthroscopy</span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
+          {/* Contact Info - Hidden on mobile */}
+          <div className="hidden lg:block space-y-4">
             <div className="mb-2">
               <h3 className="text-xl font-bold text-[#d5a028] mb-2">Contact Information</h3>
               <div className="w-12 h-0.5 bg-[#d5a028]"></div>
@@ -151,12 +154,9 @@ const FooterSection = () => {
 
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-white/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <p className="text-sm text-white/80">
               © {new Date().getFullYear()} Recover Clinic. All Rights Reserved.
-            </p>
-            <p className="text-xs text-white/60">
-              Designed with care for your recovery journey.
             </p>
           </div>
         </div>

@@ -2,71 +2,87 @@ import Image from "next/image";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="w-full h-screen bg-white pt-20 md:pt-24 pb-8 md:pb-12 lg:pb-16">
-      <div className="mx-auto w-full max-w-7xl h-full px-4 sm:px-6 lg:px-8 flex flex-col">
-        <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-4xl font-bold text-[#0b6f66] md:text-5xl lg:text-6xl mb-4">
+    <section id="about" className="w-full min-h-screen lg:h-screen bg-white py-12 md:py-16 lg:py-0 flex items-center">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-6 md:mb-8 lg:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#0b6f66] mb-3">
             Meet Dr. Himanshu Singh
           </h2>
-          <div className="w-24 h-1 bg-[#d5a028] mx-auto"></div>
+          <div className="w-16 md:w-20 h-1 bg-[#d5a028] mx-auto"></div>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-end md:gap-12 lg:gap-16 flex-1">
-          <div className="space-y-4 flex flex-col justify-end">
-            <p className="text-base leading-relaxed text-[#4a5c63] md:text-lg lg:text-xl">
-              Consultant Orthopaedic and Limb Reconstruction Surgeon with over <span className="font-semibold text-[#0b6f66]">12 years of experience</span>.
-              University Rank Holder with specialized fellowships from the prestigious Russian Ilizarov
-              Scientific Center and in Robotic Joint Replacement &amp; Sports Medicine.
-            </p>
-            <p className="text-base leading-relaxed text-[#4a5c63] md:text-lg lg:text-xl">
-              Expert in complex trauma and evidence-based care, dedicated to restoring mobility and improving quality of life for patients.
-            </p>
+        {/* Main Content Grid - Image first on mobile */}
+        <div className="grid gap-6 md:gap-8 lg:gap-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr] items-center">
+          
+          {/* Image - Shows first on mobile, second on desktop */}
+          <div className="order-1 md:order-2 flex justify-center">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-72 lg:w-80 lg:h-96 overflow-hidden rounded-2xl shadow-xl">
+              <Image
+                src="/images/WhatsApp Image 2026-01-14 at 14.32.58 (2).jpeg"
+                alt="Dr. Himanshu Singh Portrait"
+                fill
+                className="object-cover object-top"
+              />
+              {/* Decorative border */}
+              <div className="absolute inset-0 rounded-2xl ring-4 ring-[#0b6f66]/20"></div>
+            </div>
+          </div>
+          
+          {/* Content - Shows second on mobile, first on desktop */}
+          <div className="order-2 md:order-1 space-y-4">
+            {/* Bio */}
+            <div className="space-y-3">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#4a5c63]">
+                Consultant Orthopaedic and Limb Reconstruction Surgeon with over <span className="font-semibold text-[#0b6f66]">12 years of experience</span>.
+                University Rank Holder with specialized fellowships from the prestigious Russian Ilizarov
+                Scientific Center and in Robotic Joint Replacement &amp; Sports Medicine.
+              </p>
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#4a5c63]">
+                Expert in complex trauma and evidence-based care, dedicated to restoring mobility and improving quality of life for patients.
+              </p>
+            </div>
             
             {/* Qualifications */}
-            <div className="space-y-3 pt-2">
-              <h3 className="text-lg font-bold text-[#0b6f66] md:text-xl">Key Qualifications</h3>
-              <ul className="space-y-2 text-sm md:text-base text-[#4a5c63]">
+            <div className="space-y-2 pt-2">
+              <h3 className="text-sm sm:text-base md:text-lg font-bold text-[#0b6f66]">Key Qualifications</h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 text-xs sm:text-sm md:text-base text-[#4a5c63]">
                 <li className="flex items-start gap-2">
-                  <span className="text-[#d5a028] mt-1">•</span>
-                  <span>Fellowship in Robotic Joint Replacement &amp; Sports Medicine</span>
+                  <svg className="w-4 h-4 text-[#d5a028] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Fellowship in Robotic Joint Replacement</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#d5a028] mt-1">•</span>
-                  <span>Specialized training from Russian Ilizarov Scientific Center</span>
+                  <svg className="w-4 h-4 text-[#d5a028] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Russian Ilizarov Scientific Center Training</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#d5a028] mt-1">•</span>
-                  <span>University Rank Holder in Orthopaedic Surgery</span>
+                  <svg className="w-4 h-4 text-[#d5a028] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>University Rank Holder</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-[#d5a028] mt-1">•</span>
-                  <span>Expert in Complex Trauma &amp; Limb Reconstruction</span>
+                  <svg className="w-4 h-4 text-[#d5a028] mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Complex Trauma Expert</span>
                 </li>
               </ul>
             </div>
             
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#e6e3df]">
-              <div>
-                <div className="text-3xl font-bold text-[#0b6f66]">12+</div>
-                <div className="text-sm text-[#4a5c63] mt-1">Years Experience</div>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-3 border-t border-[#e6e3df]">
+              <div className="bg-[#0b6f66]/5 rounded-lg p-3 text-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0b6f66]">12+</div>
+                <div className="text-xs sm:text-sm text-[#4a5c63]">Years Experience</div>
               </div>
-              <div>
-                <div className="text-3xl font-bold text-[#0b6f66]">1000+</div>
-                <div className="text-sm text-[#4a5c63] mt-1">Successful Surgeries</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="flex justify-center md:justify-end items-end h-full">
-            <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg h-full max-h-[calc(100vh-200px)]">
-              <div className="relative w-full h-full overflow-hidden rounded-2xl bg-[#f0f0f0] shadow-2xl">
-                <Image
-                  src="/images/WhatsApp Image 2026-01-14 at 14.32.58 (2).jpeg"
-                  alt="Dr. Himanshu Singh Portrait"
-                  fill
-                  className="object-cover object-top"
-                />
+              <div className="bg-[#0b6f66]/5 rounded-lg p-3 text-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0b6f66]">1000+</div>
+                <div className="text-xs sm:text-sm text-[#4a5c63]">Successful Surgeries</div>
               </div>
             </div>
           </div>
