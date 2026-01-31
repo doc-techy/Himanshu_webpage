@@ -5,12 +5,6 @@ const nextConfig: NextConfig = {
     unoptimized: false,
     remotePatterns: [],
   },
-  // Suppress the lockfile warning
-  experimental: {
-    turbo: {
-      root: process.cwd(),
-    },
-  },
 };
 
 export default nextConfig;
