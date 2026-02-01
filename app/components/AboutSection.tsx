@@ -2,28 +2,40 @@ import Image from "next/image";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="relative w-full min-h-screen lg:h-screen bg-white py-12 md:py-16 lg:py-0 flex items-center overflow-hidden">
+    <section id="about" className="relative w-full min-h-screen lg:h-screen bg-white lg:py-0 flex flex-col lg:flex-row lg:items-center overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 right-10 md:top-20 md:right-20 w-48 h-48 md:w-72 lg:w-96 md:h-72 lg:h-96 bg-[#0b6f66]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-10 md:bottom-20 md:left-20 w-48 h-48 md:w-72 lg:w-96 md:h-72 lg:h-96 bg-[#d5a028]/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-        {/* Header */}
-        <div className="text-center mb-6 md:mb-8 lg:mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#0b6f66] mb-3">
-            Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Dr. Himanshu Singh</span>
+      {/* Mobile Full-Width Image - Only visible on mobile/tablet */}
+      <div className="lg:hidden relative w-full h-[420px] sm:h-[480px] md:h-[520px]">
+        <Image
+          src="/images/WhatsApp Image 2026-01-14 at 14.32.58 (2).jpeg"
+          alt="Dr. Himanshu Singh Portrait"
+          fill
+          className="object-cover object-top"
+        />
+        {/* Gradient overlay at bottom 20% */}
+        <div className="absolute bottom-0 left-0 right-0 h-[20%] bg-gradient-to-t from-white to-transparent"></div>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10 py-6 md:py-8 lg:py-0">
+        {/* Mobile Header - Only visible on mobile */}
+        <div className="text-center mb-6 md:mb-8 lg:hidden">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0b6f66] mb-3">
+            Meet Dr. Himanshu Singh
           </h2>
           <div className="w-16 md:w-20 h-1 bg-[#d5a028] mx-auto"></div>
         </div>
         
-        {/* Main Content Grid - Image first on mobile */}
-        <div className="grid gap-6 md:gap-8 lg:gap-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr] items-center">
+        {/* Main Content Grid - Image left on desktop only */}
+        <div className="grid gap-6 md:gap-8 lg:gap-12 lg:grid-cols-[1fr_1.2fr] items-center">
           
-          {/* Image - Shows first on mobile, second on desktop */}
-          <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-72 lg:w-80 lg:h-96 overflow-hidden rounded-2xl shadow-2xl">
+          {/* Desktop Image - Only visible on desktop */}
+          <div className="hidden lg:flex justify-start">
+            <div className="relative lg:w-[400px] lg:h-[500px] xl:w-[450px] xl:h-[560px] overflow-hidden rounded-2xl shadow-2xl">
               <Image
                 src="/images/WhatsApp Image 2026-01-14 at 14.32.58 (2).jpeg"
                 alt="Dr. Himanshu Singh Portrait"
@@ -35,8 +47,16 @@ const AboutSection = () => {
             </div>
           </div>
           
-          {/* Content - Shows second on mobile, first on desktop */}
-          <div className="order-2 md:order-1 space-y-4">
+          {/* Content - right on desktop */}
+          <div className="space-y-4">
+            {/* Desktop Header - Only visible on desktop */}
+            <div className="hidden lg:block mb-2">
+              <h2 className="text-4xl lg:text-5xl font-bold text-[#0b6f66] mb-3">
+                Meet Dr. Himanshu Singh
+              </h2>
+              <div className="w-20 h-1 bg-[#d5a028]"></div>
+            </div>
+            
             {/* Bio */}
             <div className="space-y-3">
               <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600">

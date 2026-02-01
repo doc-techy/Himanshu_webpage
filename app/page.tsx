@@ -2,8 +2,8 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import ServicesSection from "./components/ServicesSection";
+import BlogsVideosPreview from "./components/BlogsVideosPreview";
 import TestimonialsSection from "./components/TestimonialsSection";
-import BlogsVideosSection from "./components/BlogsVideosSection";
 import FAQSection from "./components/FAQSection";
 import ContactSection from "./components/ContactSection";
 import FooterSection from "./components/FooterSection";
@@ -15,7 +15,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
-      <BlogsVideosSection />
+      <BlogsVideosPreview />
       <FAQSection />
       <ContactSection />
       <TestimonialsSection />

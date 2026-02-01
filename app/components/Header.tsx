@@ -17,6 +17,11 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 w-full bg-white shadow-md z-50">
+      {/* Top gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#0b6f66]"></div>
+      {/* Bottom gradient line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#0b6f66]"></div>
+      
       <div className="mx-auto w-full max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
@@ -31,11 +36,12 @@ const Header = () => {
               unoptimized
             />
             <div className="flex flex-col leading-tight">
-              <div className="text-sm font-bold tracking-wide text-[#0b6f66] sm:text-base md:text-lg lg:text-xl">
+              <div className="text-base font-bold tracking-wide text-[#0b6f66] sm:text-lg md:text-xl lg:text-2xl">
                 RECOVER CLINIC
               </div>
-              <div className="text-[8px] font-semibold uppercase tracking-wide text-[#0b6f66]/80 sm:text-[10px] md:text-xs hidden xs:block">
-                ROBOTIC SURGERY CENTER &amp; LIMB RECONSTRUCTION
+              <div className="text-[6px] font-semibold uppercase tracking-wide text-[#d5a028] sm:text-[8px] md:text-[10px] leading-tight">
+                ROBOTIC SURGERY CENTER<br />
+                &amp; LIMB RECONSTRUCTION
               </div>
             </div>
           </Link>
@@ -59,6 +65,18 @@ const Header = () => {
               className="px-4 py-2 text-sm font-semibold text-[#2b4c56] rounded-lg hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
             >
               Services
+            </Link>
+            <Link 
+              href="/blogs" 
+              className="px-4 py-2 text-sm font-semibold text-[#2b4c56] rounded-lg hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
+            >
+              Blogs
+            </Link>
+            <Link 
+              href="/videos" 
+              className="px-4 py-2 text-sm font-semibold text-[#2b4c56] rounded-lg hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
+            >
+              Videos
             </Link>
             <a 
               href="/#contact" 
@@ -141,6 +159,27 @@ const Header = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
             </svg>
             Services
+          </Link>
+          <Link 
+            href="/blogs" 
+            onClick={closeMenu}
+            className="flex items-center gap-3 px-4 py-3 text-base font-semibold text-[#2b4c56] rounded-xl hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
+          >
+            <svg className="w-5 h-5 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+            Blogs
+          </Link>
+          <Link 
+            href="/videos" 
+            onClick={closeMenu}
+            className="flex items-center gap-3 px-4 py-3 text-base font-semibold text-[#2b4c56] rounded-xl hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
+          >
+            <svg className="w-5 h-5 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Videos
           </Link>
           <div className="pt-2">
             <a 
