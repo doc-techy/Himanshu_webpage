@@ -54,7 +54,7 @@ const HeroSection = () => {
         <div className="hidden lg:flex flex-col items-start justify-end space-y-5 z-10 flex-[1.2] w-full pb-16 xl:pb-20">
           
           {/* Main Heading */}
-          <div className="space-y-2 text-left w-full">
+          <div className=" text-left w-full">
             <h1 className="text-5xl xl:text-6xl font-black leading-[1.1] text-white tracking-tight">
               Advanced{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">
@@ -63,7 +63,7 @@ const HeroSection = () => {
               <br />
               <span className="text-white">&amp; Robotic Surgery</span>
             </h1>
-            <div className="flex items-center justify-start gap-2 ">
+            <div className="flex items-center justify-start gap-2">
               <div className="h-1 w-14 bg-gradient-to-r from-[#d5a028] to-[#f4c430] rounded-full"></div>
               <span className="text-lg text-white/90 font-semibold">in Bangalore</span>
             </div>
@@ -126,8 +126,8 @@ const HeroSection = () => {
         
         {/* Mobile Title Only */}
         <div className="lg:hidden flex flex-col items-center z-10 w-full">
-          <div className="space-y-3 text-center w-full">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.15] text-white tracking-tight">
+          <div className="text-center w-full">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] text-white tracking-tight">
               Advanced{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">
                 Orthopaedic
@@ -135,7 +135,7 @@ const HeroSection = () => {
               <br />
               <span className="text-white">&amp; Robotic Surgery</span>
             </h1>
-            <div className="flex items-center justify-center gap-2 pt-2">
+            <div className="flex items-center justify-center gap-2 mt-1">
               <div className="h-1 w-12 sm:w-16 bg-gradient-to-r from-[#d5a028] to-[#f4c430] rounded-full"></div>
               <span className="text-base sm:text-lg md:text-xl text-white/90 font-semibold">in Bangalore</span>
             </div>
