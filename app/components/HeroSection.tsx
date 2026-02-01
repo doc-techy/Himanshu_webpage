@@ -13,7 +13,40 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] lg:w-[600px] h-[300px] md:h-[500px] lg:h-[600px] bg-[#d5a028]/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-7xl h-full px-4 sm:px-6 lg:px-8 pt-20 md:pt-24 lg:pt-0 pb-8 lg:pb-0 flex flex-col lg:flex-row lg:items-end">
+      {/* Desktop Image - Behind tint */}
+      <div className="hidden lg:flex absolute bottom-0 right-[10%] xl:right-[15%] items-end justify-center z-[3]">
+        <div className="relative w-[380px] xl:w-[420px]">
+          <div className="relative aspect-[3/4] w-full">
+            <Image
+              src="/images/hero_image.png"
+              alt="Dr. Himanshu Singh - Expert Orthopaedic & Robotic Surgeon"
+              fill
+              className="object-contain object-bottom"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Image - Behind tint, positioned in middle area */}
+      <div className="lg:hidden absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-[3]">
+        <div className="relative w-[320px] sm:w-[360px] md:w-[400px]">
+          <div className="relative aspect-[3/4] w-full">
+            <Image
+              src="/images/hero_image.png"
+              alt="Dr. Himanshu Singh - Expert Orthopaedic & Robotic Surgeon"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Tint layer - above image, below text */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none z-[5]"></div>
+
+      <div className="relative mx-auto w-full max-w-7xl min-h-screen px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 lg:pt-0 pb-8 lg:pb-0 flex flex-col lg:flex-row lg:items-end z-10">
         
         {/* Desktop: All content on left | Mobile: Title first, Image, then rest */}
         
@@ -22,7 +55,7 @@ const HeroSection = () => {
           
           {/* Main Heading */}
           <div className="space-y-2 text-left w-full">
-            <h1 className="text-5xl xl:text-6xl font-black leading-[1.15] text-white tracking-tight">
+            <h1 className="text-5xl xl:text-6xl font-black leading-[1.1] text-white tracking-tight">
               Advanced{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">
                 Orthopaedic
@@ -30,7 +63,7 @@ const HeroSection = () => {
               <br />
               <span className="text-white">&amp; Robotic Surgery</span>
             </h1>
-            <div className="flex items-center justify-start gap-2 pt-1">
+            <div className="flex items-center justify-start gap-2 ">
               <div className="h-1 w-14 bg-gradient-to-r from-[#d5a028] to-[#f4c430] rounded-full"></div>
               <span className="text-lg text-white/90 font-semibold">in Bangalore</span>
             </div>
@@ -92,7 +125,7 @@ const HeroSection = () => {
         {/* Mobile Layout: Title (order-1), Image (order-2), Rest of content (order-3) */}
         
         {/* Mobile Title Only */}
-        <div className="lg:hidden flex flex-col items-center z-10 w-full order-1">
+        <div className="lg:hidden flex flex-col items-center z-10 w-full">
           <div className="space-y-3 text-center w-full">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.15] text-white tracking-tight">
               Advanced{" "}
@@ -109,23 +142,11 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Mobile Image */}
-        <div className="lg:hidden relative flex items-center justify-center z-10 w-full order-2 mt-6 flex-1">
-          <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] mx-auto">
-            <div className="relative aspect-[3/4] w-full">
-              <Image
-                src="/images/hero_image.png"
-                alt="Dr. Himanshu Singh - Expert Orthopaedic & Robotic Surgeon"
-                fill
-                className="object-contain object-bottom"
-                priority
-              />
-            </div>
-          </div>
-        </div>
+        {/* Mobile Image Spacer - creates space for the background image */}
+        <div className="lg:hidden flex-1 w-full"></div>
 
         {/* Mobile Rest of Content */}
-        <div className="lg:hidden flex flex-col items-center space-y-5 z-10 w-full order-3 mt-6 pb-6">
+        <div className="lg:hidden flex flex-col items-center space-y-4 z-10 w-full pb-3">
           {/* Description */}
           <div className="text-center w-full">
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium mb-2">
@@ -179,21 +200,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Desktop Image */}
-        <div className="hidden lg:flex relative items-end justify-center z-10 flex-[0.8] w-full self-end">
-          <div className="relative w-full max-w-[380px] xl:max-w-[420px] mx-0">
-            <div className="relative aspect-[3/4] w-full">
-              <Image
-                src="/images/hero_image.png"
-                alt="Dr. Himanshu Singh - Expert Orthopaedic & Robotic Surgeon"
-                fill
-                className="object-contain object-bottom"
-                priority
-              />
-            </div>
-          </div>
         </div>
-      </div>
       
       {/* Scroll indicator - hidden on mobile */}
       <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-white/60 animate-bounce">
