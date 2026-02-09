@@ -103,7 +103,7 @@ const AboutSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-3 border-t border-gray-200">
               <div className="bg-[#0b6f66]/5 border border-[#0b6f66]/10 rounded-lg p-3 text-center">
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0b6f66]">12+</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0b6f66]">{new Date().getFullYear() - 2013}+</div>
                 <div className="text-xs sm:text-sm text-gray-600">Years Experience</div>
               </div>
               <div className="bg-[#0b6f66]/5 border border-[#0b6f66]/10 rounded-lg p-3 text-center">

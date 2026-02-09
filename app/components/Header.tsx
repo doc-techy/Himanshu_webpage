@@ -22,24 +22,24 @@ const Header = () => {
       {/* Bottom gradient line */}
       <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#0b6f66]"></div>
       
-      <div className="mx-auto w-full max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-3 py-2 sm:px-4 sm:py-3 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
-          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity min-w-0">
             <Image
               src="/images/logo.gif"
               alt="Recover Clinic Logo"
               width={64}
               height={64}
-              className="h-11 w-11 md:h-14 md:w-14 flex-shrink-0 object-contain"
+              className="h-9 w-9 sm:h-11 sm:w-11 md:h-14 md:w-14 flex-shrink-0 object-contain"
               priority
               unoptimized
             />
-            <div className="flex flex-col leading-tight">
-              <div className="text-base font-bold tracking-wide text-[#0b6f66] sm:text-lg md:text-xl lg:text-2xl">
+            <div className="flex flex-col leading-tight min-w-0">
+              <div className="text-sm font-bold tracking-wide text-[#0b6f66] sm:text-lg md:text-xl lg:text-2xl truncate">
                 RECOVER CLINIC
               </div>
-              <div className="text-[6px] font-semibold uppercase tracking-wide text-[#d5a028] sm:text-[8px] md:text-[10px] leading-tight">
+              <div className="text-[5px] font-semibold uppercase tracking-wide text-[#d5a028] sm:text-[7px] md:text-[10px] leading-tight">
                 ROBOTIC SURGERY CENTER<br />
                 &amp; LIMB RECONSTRUCTION
               </div>
@@ -119,7 +119,7 @@ const Header = () => {
         className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ top: '60px' }}
+        style={{ top: '56px' }}
         onClick={closeMenu}
       />
 

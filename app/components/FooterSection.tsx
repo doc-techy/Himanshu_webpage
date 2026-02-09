@@ -145,11 +145,11 @@ const FooterSection = () => {
                 </svg>
                 <span className="font-semibold">+91 72820 29272</span>
               </a>
-              <a href="mailto:info@clinicrecover.com" className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all group">
+              <a href="mailto:doctorsingh@live.com" className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all group">
                 <svg className="h-5 w-5 flex-shrink-0 text-[#d5a028] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="font-semibold">info@clinicrecover.com</span>
+                <span className="font-semibold">doctorsingh@live.com</span>
               </a>
             </div>
           </div>

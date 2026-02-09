@@ -1,213 +1,137 @@
-import Image from "next/image";
+"use client";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative w-full min-h-screen bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] overflow-hidden">
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/25 pointer-events-none"></div>
-      
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 right-10 md:top-20 md:right-20 w-48 h-48 md:w-72 lg:w-96 md:h-72 lg:h-96 bg-[#d5a028]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 md:bottom-20 md:left-20 w-48 h-48 md:w-72 lg:w-96 md:h-72 lg:h-96 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] lg:w-[600px] h-[300px] md:h-[500px] lg:h-[600px] bg-[#d5a028]/5 rounded-full blur-3xl"></div>
+    <section id="home" className="relative w-full min-h-[100dvh] bg-[#1e2626] overflow-hidden flex items-center">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0b6f66]/25 via-transparent to-[#0b6f66]/12"></div>
+        <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-gradient-to-bl from-[#d5a028]/25 via-[#d5a028]/10 to-transparent rounded-bl-[100px] md:rounded-bl-[200px]"></div>
+        <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-gradient-to-tr from-[#0b6f66]/30 via-transparent to-transparent rounded-tr-[100px] md:rounded-tr-[200px]"></div>
       </div>
 
-      {/* Desktop Image - Behind tint */}
-      <div className="hidden lg:flex absolute bottom-0 right-[10%] xl:right-[14%] items-end justify-center z-[3]">
-        <div className="relative w-[400px] xl:w-[460px]">
-          <div className="relative aspect-[3/4] w-full">
-            <Image
-              src="/images/hero_image.png"
-              alt="Dr. Himanshu Singh - Expert Orthopaedic & Robotic Surgeon"
-              fill
-              className="object-contain object-bottom"
-              priority
-            />
+      {/* Mesh grid overlay */}
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+
+      {/* Floating orbs - hidden on very small screens */}
+      <div className="hidden sm:block absolute top-[15%] right-[10%] w-3 h-3 rounded-full bg-[#d5a028]/60 animate-pulse"></div>
+      <div className="hidden sm:block absolute top-[25%] right-[25%] w-2 h-2 rounded-full bg-[#d5a028]/40 animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="hidden sm:block absolute bottom-[30%] left-[15%] w-2 h-2 rounded-full bg-[#0b6f66]/60 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+      <div className="hidden sm:block absolute top-[60%] right-[8%] w-1.5 h-1.5 rounded-full bg-white/30 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+
+      {/* Glowing accent line */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d5a028] to-transparent opacity-60"></div>
+
+      {/* Large decorative text background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none w-full overflow-hidden text-center">
+        <span className="text-[80px] xs:text-[100px] sm:text-[150px] md:text-[220px] lg:text-[300px] font-black text-white/[0.02] tracking-tighter leading-none">RECOVER</span>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16 sm:pb-16 flex flex-col justify-center min-h-[100dvh]">
+        <div className="flex flex-col items-center text-center">
+
+          {/* Top label */}
+          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 md:mb-8">
+            <div className="h-px w-6 sm:w-8 md:w-14 bg-gradient-to-r from-transparent to-[#d5a028]"></div>
+            <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
+              <div className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d5a028] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-[#d5a028]"></span>
+              </div>
+              <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-white/70 uppercase tracking-[0.15em] sm:tracking-[0.2em]">Orthopaedic Excellence</span>
+            </div>
+            <div className="h-px w-6 sm:w-8 md:w-14 bg-gradient-to-l from-transparent to-[#d5a028]"></div>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Image - Behind tint, positioned in middle area */}
-      <div className="lg:hidden absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-[3]">
-        <div className="relative w-[260px] sm:w-[300px] md:w-[340px]">
-          <div className="relative aspect-[3/4] w-full">
-            <Image
-              src="/images/hero_image.png"
-              alt="Dr. Himanshu Singh - Expert Orthopaedic & Robotic Surgeon"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Tint layer - above image, below text */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none z-[5]"></div>
-
-      <div className="relative mx-auto w-full max-w-7xl min-h-screen px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 lg:pt-0 pb-8 lg:pb-0 flex flex-col lg:flex-row lg:items-end z-10">
-        
-        {/* Desktop: All content on left | Mobile: Title first, Image, then rest */}
-        
-        {/* Left Content Container - Desktop only shows all together */}
-        <div className="hidden lg:flex flex-col items-start justify-end space-y-6 z-10 flex-[1.2] w-full pb-20 xl:pb-24">
-          
-          {/* Main Heading */}
-          <div className="text-left w-full">
-            <h1 className="text-6xl xl:text-7xl font-black leading-[1.1] text-white tracking-tight">
-              Advanced{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">
-                Orthopaedic
+          {/* Main Title */}
+          <div className="relative mb-3 sm:mb-6 md:mb-8 w-full">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
+              <span className="block text-white/90">Advanced</span>
+              <span className="block mt-1 md:mt-2">
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">Orthopaedic</span>
+                  <div className="absolute -bottom-0.5 sm:-bottom-1 md:-bottom-2 left-0 right-0 h-[2px] sm:h-[3px] md:h-1 bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028] rounded-full opacity-60"></div>
+                </span>
               </span>
-              <br />
-              <span className="text-white">&amp; Robotic Surgery</span>
+              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white/90">& Limb Reconstruction</span>
             </h1>
-            <div className="flex items-center justify-start gap-2 mt-2">
-              <div className="h-1.5 w-16 bg-gradient-to-r from-[#d5a028] to-[#f4c430] rounded-full"></div>
-              <span className="text-xl text-white/90 font-semibold">in Bangalore</span>
-            </div>
           </div>
 
-          {/* Description */}
-          <div className="text-left w-full">
-            <p className="text-2xl text-white/90 font-medium mb-1">
-              Restoring Mobility, Reclaiming Life with
+          {/* Location badge */}
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-8 md:mb-10">
+            <svg className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span className="text-sm sm:text-sm md:text-lg text-white/60 font-medium tracking-wide">Bangalore, India</span>
+          </div>
+
+          {/* Doctor info card */}
+          <div className="relative mb-6 sm:mb-8 md:mb-12 px-5 py-4 sm:px-6 sm:py-4 md:px-10 md:py-5 rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm w-full max-w-md sm:max-w-lg md:max-w-xl">
+            <div className="absolute -top-px left-1/2 -translate-x-1/2 w-16 sm:w-24 h-px bg-gradient-to-r from-transparent via-[#d5a028] to-transparent"></div>
+            <p className="text-sm sm:text-sm md:text-lg text-white/50 font-medium mb-0.5 sm:mb-1">Restoring Mobility, Reclaiming Life</p>
+            <p className="text-lg sm:text-lg md:text-2xl lg:text-3xl font-bold text-white">
+              with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Dr. Himanshu Singh</span>
             </p>
-            <div className="flex items-center justify-start gap-2">
-              <div className="h-px w-10 bg-[#d5a028]"></div>
-              <span className="font-bold text-white text-3xl">Dr. Himanshu Singh</span>
-              <div className="h-px w-10 bg-[#d5a028]"></div>
-            </div>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-3 gap-4 pt-2 w-full max-w-xl">
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 text-center hover:bg-white/15 transition-all">
-              <div className="text-4xl font-black text-[#d5a028]">12+</div>
-              <div className="text-sm text-white/80 font-medium uppercase tracking-wide">Years</div>
+          {/* Stats row */}
+          <div className="flex items-center gap-6 sm:gap-6 md:gap-10 mb-8 sm:mb-10 md:mb-12">
+            <div className="text-center">
+              <div className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">{new Date().getFullYear() - 2013}<span className="text-[#d5a028]">+</span></div>
+              <div className="text-[9px] sm:text-[9px] md:text-xs text-white/40 font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] mt-0.5 sm:mt-1">Years Exp</div>
             </div>
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 text-center hover:bg-white/15 transition-all">
-              <div className="text-4xl font-black text-[#d5a028]">1000+</div>
-              <div className="text-sm text-white/80 font-medium uppercase tracking-wide">Surgeries</div>
+            <div className="w-px h-10 sm:h-10 md:h-14 bg-white/10"></div>
+            <div className="text-center">
+              <div className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white">1000<span className="text-[#d5a028]">+</span></div>
+              <div className="text-[9px] sm:text-[9px] md:text-xs text-white/40 font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] mt-0.5 sm:mt-1">Surgeries</div>
             </div>
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 text-center hover:bg-white/15 transition-all">
-              <div className="text-xl font-black text-[#d5a028]">9AM-7PM</div>
-              <div className="text-sm text-white/80 font-medium uppercase tracking-wide">Mon-Sat</div>
+            <div className="w-px h-10 sm:h-10 md:h-14 bg-white/10"></div>
+            <div className="text-center">
+              <div className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-black text-white">9-8<span className="text-[#d5a028]">PM</span></div>
+              <div className="text-[9px] sm:text-[9px] md:text-xs text-white/40 font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] mt-0.5 sm:mt-1">Mon-Sat</div>
             </div>
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-row gap-4 pt-2 justify-start w-full">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-3 md:gap-4 items-stretch sm:items-center justify-center w-full sm:w-auto">
             <a
               href="#contact"
-              className="group inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-white bg-[#d5a028] rounded-xl shadow-lg transition-all duration-300 hover:bg-[#c08f1f] hover:scale-105 hover:-translate-y-0.5"
+              className="group relative inline-flex items-center justify-center px-6 py-3.5 sm:px-7 sm:py-3.5 md:px-10 md:py-4 text-sm sm:text-sm md:text-base font-bold text-[#0a0a0a] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 whitespace-nowrap"
             >
-              <span className="flex items-center gap-2">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028] transition-all"></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[#f4c430] via-[#d5a028] to-[#f4c430]"></div>
+              <span className="relative flex items-center gap-2">
                 Book Appointment
-                <svg className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
             </a>
             <a
               href="#"
-              className="group inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-white border-2 border-white/30 bg-white/5 backdrop-blur-sm rounded-xl transition-all duration-300 hover:bg-white/15 hover:border-white/50"
+              className="group inline-flex items-center justify-center px-6 py-3.5 sm:px-7 sm:py-3.5 md:px-10 md:py-4 text-sm sm:text-sm md:text-base font-bold text-white border border-white/20 bg-white/5 backdrop-blur-sm rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:scale-105 hover:-translate-y-0.5 whitespace-nowrap"
             >
-              <svg className="mr-2 w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              Watch Intro
-            </a>
-          </div>
-        </div>
-
-        {/* Mobile Layout: Title (order-1), Image (order-2), Rest of content (order-3) */}
-        
-        {/* Mobile Title Only */}
-        <div className="lg:hidden flex flex-col items-center z-10 w-full">
-          <div className="text-center w-full">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] text-white tracking-tight">
-              Advanced{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">
-                Orthopaedic
-              </span>
-              <br />
-              <span className="text-white">&amp; Robotic Surgery</span>
-            </h1>
-            <div className="flex items-center justify-center gap-2 mt-1">
-              <div className="h-1 w-12 sm:w-16 bg-gradient-to-r from-[#d5a028] to-[#f4c430] rounded-full"></div>
-              <span className="text-base sm:text-lg md:text-xl text-white/90 font-semibold">in Bangalore</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Image Spacer - creates space for the background image */}
-        <div className="lg:hidden flex-1 w-full"></div>
-
-        {/* Mobile Rest of Content */}
-        <div className="lg:hidden flex flex-col items-center space-y-4 z-10 w-full pb-3">
-          {/* Description */}
-          <div className="text-center w-full">
-            <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium mb-2">
-              Restoring Mobility, Reclaiming Life with
-            </p>
-            <div className="flex items-center justify-center gap-2">
-              <div className="h-px w-8 sm:w-10 bg-[#d5a028]"></div>
-              <span className="font-bold text-white text-lg sm:text-xl md:text-2xl">Dr. Himanshu Singh</span>
-              <div className="h-px w-8 sm:w-10 bg-[#d5a028]"></div>
-            </div>
-          </div>
-
-          {/* Stats Cards */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-2 w-full max-w-lg">
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 sm:p-4 text-center hover:bg-white/15 transition-all">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-[#d5a028]">12+</div>
-              <div className="text-xs sm:text-sm text-white/80 font-medium uppercase tracking-wide">Years</div>
-            </div>
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 sm:p-4 text-center hover:bg-white/15 transition-all">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-[#d5a028]">1000+</div>
-              <div className="text-xs sm:text-sm text-white/80 font-medium uppercase tracking-wide">Surgeries</div>
-            </div>
-            <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 sm:p-4 text-center hover:bg-white/15 transition-all">
-              <div className="text-base sm:text-lg md:text-xl font-black text-[#d5a028]">9AM-7PM</div>
-              <div className="text-xs sm:text-sm text-white/80 font-medium uppercase tracking-wide">Mon-Sat</div>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-row gap-3 sm:gap-4 pt-2 justify-center w-full">
-            <a
-              href="#contact"
-              className="group inline-flex items-center justify-center px-5 py-3 sm:px-7 sm:py-3.5 text-base sm:text-lg font-bold text-white bg-[#d5a028] rounded-xl shadow-lg transition-all duration-300 hover:bg-[#c08f1f] hover:scale-105 hover:-translate-y-0.5"
-            >
-              <span className="flex items-center gap-2">
-                Book Appointment
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <div className="relative mr-2 w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full border border-white/30 flex items-center justify-center group-hover:border-[#d5a028] group-hover:bg-[#d5a028]/10 transition-all flex-shrink-0">
+                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 ml-0.5 text-white group-hover:text-[#d5a028] transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
                 </svg>
-              </span>
-            </a>
-            <a
-              href="#"
-              className="group inline-flex items-center justify-center px-5 py-3 sm:px-7 sm:py-3.5 text-base sm:text-lg font-bold text-white border-2 border-white/30 bg-white/5 backdrop-blur-sm rounded-xl transition-all duration-300 hover:bg-white/15 hover:border-white/50"
-            >
-              <svg className="mr-2 w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              </div>
               Watch Intro
             </a>
           </div>
         </div>
-
-        </div>
+      </div>
       
-      {/* Scroll indicator - hidden on mobile */}
-      <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-white/60 animate-bounce">
-        <span className="text-xs font-medium tracking-wider uppercase">Scroll</span>
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-32 bg-gradient-to-t from-[#1e2626] to-transparent pointer-events-none z-[2]"></div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+        <div className="w-4 h-7 sm:w-5 sm:h-8 rounded-full border border-white/20 flex justify-center pt-1 sm:pt-1.5">
+          <div className="w-0.5 sm:w-1 h-1.5 sm:h-2 rounded-full bg-[#d5a028] animate-bounce"></div>
+        </div>
       </div>
     </section>
   );

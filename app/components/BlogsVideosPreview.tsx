@@ -61,7 +61,7 @@ const BlogsPreview = () => {
         </div>
 
         {/* Blogs Grid */}
-        <div className="grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {blogs.map((blog, index) => (
             <div
               key={index}
@@ -185,7 +185,7 @@ const VideosPreview = () => {
         </div>
 
         {/* Videos Grid */}
-        <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+        <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
           {videos.map((video, index) => (
             <div
               key={index}

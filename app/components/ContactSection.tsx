@@ -44,7 +44,7 @@ const ContactSection = () => {
 
               {/* Email Card */}
               <a 
-                href="mailto:info@clinicrecover.com" 
+                href="mailto:doctorsingh@live.com" 
                 className="group flex flex-col items-center justify-center p-4 md:p-6 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
               >
                 <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/20 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-[#d5a028] group-hover:scale-110 transition-all">
@@ -53,7 +53,7 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <span className="text-[10px] md:text-xs text-white/70 mb-0.5">Email Us</span>
-                <span className="text-xs md:text-sm font-bold text-white text-center break-all">info@clinicrecover.com</span>
+                <span className="text-xs md:text-sm font-bold text-white text-center break-all">doctorsingh@live.com</span>
               </a>
             </div>
 
@@ -105,7 +105,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Clinic Hours */}
+            {/* Visit Us - Clinic Timings */}
             <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 md:p-6">
               <div className="flex items-start gap-3 md:gap-4">
                 <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
@@ -114,17 +114,29 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-sm md:text-base font-bold text-white mb-2">Clinic Hours</h3>
-                  <div className="space-y-1.5 text-xs md:text-sm text-white/80">
-                    <div className="flex justify-between">
-                      <span>Monday - Friday</span>
-                      <span className="font-semibold text-white">9:00 AM - 7:00 PM</span>
+                  <h3 className="text-sm md:text-base font-bold text-white mb-3">Visit Us | Orthopaedics</h3>
+                  <div className="space-y-3 text-xs md:text-sm">
+                    <div className="rounded-lg bg-white/5 border border-white/10 p-3">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#d5a028]"></div>
+                        <span className="font-bold text-[#d5a028] text-xs md:text-sm">SPARSH Hospital, Hennur</span>
+                      </div>
+                      <div className="flex justify-between text-white/80 pl-3.5">
+                        <span>Mon - Sat</span>
+                        <span className="font-semibold text-white">9:00 AM - 4:00 PM</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
-                      <span>Saturday</span>
-                      <span className="font-semibold text-white">9:00 AM - 2:00 PM</span>
+                    <div className="rounded-lg bg-white/5 border border-white/10 p-3">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#d5a028]"></div>
+                        <span className="font-bold text-[#d5a028] text-xs md:text-sm">Recover Clinic, Kaggadasapura</span>
+                      </div>
+                      <div className="flex justify-between text-white/80 pl-3.5">
+                        <span>Mon - Sat</span>
+                        <span className="font-semibold text-white">5:00 PM - 8:00 PM</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-white/60 pt-1 pl-3.5">
                       <span>Sunday</span>
                       <span className="font-semibold text-red-300">Closed</span>
                     </div>
@@ -141,7 +153,7 @@ const ContactSection = () => {
             <form className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 <div>
-                  <label className="block text-xs md:text-sm font-medium text-white/90 mb-1.5">Your Name</label>
+                  <label className="block text-xs md:text-sm font-medium text-white/90 mb-1.5">Your Name <span className="text-[#d5a028]">*</span></label>
                   <input
                     type="text"
                     className="w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2.5 md:py-3 text-sm text-white placeholder:text-white/50 focus:border-[#d5a028] focus:outline-none focus:ring-2 focus:ring-[#d5a028]/30 transition-all"
@@ -150,7 +162,7 @@ const ContactSection = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs md:text-sm font-medium text-white/90 mb-1.5">Phone Number</label>
+                  <label className="block text-xs md:text-sm font-medium text-white/90 mb-1.5">Phone Number <span className="text-[#d5a028]">*</span></label>
                   <input
                     type="tel"
                     className="w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2.5 md:py-3 text-sm text-white placeholder:text-white/50 focus:border-[#d5a028] focus:outline-none focus:ring-2 focus:ring-[#d5a028]/30 transition-all"
@@ -165,7 +177,6 @@ const ContactSection = () => {
                   type="email"
                   className="w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2.5 md:py-3 text-sm text-white placeholder:text-white/50 focus:border-[#d5a028] focus:outline-none focus:ring-2 focus:ring-[#d5a028]/30 transition-all"
                   placeholder="your.email@example.com"
-                  required
                 />
               </div>
               <div>
@@ -189,7 +200,6 @@ const ContactSection = () => {
                   className="w-full rounded-lg border border-white/30 bg-white/10 px-3 py-2.5 md:py-3 text-sm text-white placeholder:text-white/50 focus:border-[#d5a028] focus:outline-none focus:ring-2 focus:ring-[#d5a028]/30 resize-none transition-all"
                   placeholder="Tell us about your concern..."
                   rows={3}
-                  required
                 />
               </div>
               <button
