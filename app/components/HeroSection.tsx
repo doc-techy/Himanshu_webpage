@@ -5,9 +5,8 @@ const HeroSection = () => {
     <section id="home" className="relative w-full min-h-[100dvh] bg-[#1e2626] overflow-hidden flex items-center">
       {/* Animated gradient background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0b6f66]/25 via-transparent to-[#0b6f66]/12"></div>
-        <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-gradient-to-bl from-[#d5a028]/25 via-[#d5a028]/10 to-transparent rounded-bl-[100px] md:rounded-bl-[200px]"></div>
-        <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-gradient-to-tr from-[#0b6f66]/30 via-transparent to-transparent rounded-tr-[100px] md:rounded-tr-[200px]"></div>
+        <div className="absolute inset-0 bg-[#d5a028]/[0.06]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b6f66]/15 via-[#d5a028]/[0.06] to-[#0b6f66]/10"></div>
       </div>
 
       {/* Mesh grid overlay */}

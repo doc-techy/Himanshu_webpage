@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const TestimonialsSection = () => {
   const testimonials = [
     {
@@ -80,6 +84,34 @@ const TestimonialsSection = () => {
     }
   ];
 
+  // Featured transformation stories
+  const transformations = [
+    {
+      id: 1,
+      name: "Vikram Malhotra",
+      age: 45,
+      procedure: "Limb Reconstruction - Ilizarov Method",
+      beforeImage: "/images/WhatsApp Image 2026-01-14 at 14.32.55.jpeg",
+      afterImage: "/images/WhatsApp Image 2026-01-14 at 14.32.56.jpeg",
+      story: "After a severe motorcycle accident, doctors told me amputation was inevitable. My leg was shattered with multiple fractures and significant bone loss. Then I met Dr. Himanshu Singh. Using the Ilizarov technique, he meticulously reconstructed my leg over 8 months. Today, I walk without any aid and have returned to my normal life. Dr. Singh didn't just save my leg—he gave me my independence back.",
+      duration: "8 months recovery",
+      highlight: "Avoided Amputation"
+    },
+    {
+      id: 2,
+      name: "Priya Sharma",
+      age: 32,
+      procedure: "Leg Length Correction",
+      beforeImage: "/images/WhatsApp Image 2026-01-14 at 14.32.57.jpeg",
+      afterImage: "/images/WhatsApp Image 2026-01-14 at 14.32.58.jpeg",
+      story: "Born with a significant leg length discrepancy, I spent my entire childhood struggling with a limp and constant back pain. After consulting with Dr. Singh, I underwent limb lengthening surgery. The transformation has been incredible—my legs are now equal in length, and I can walk confidently for the first time in my life. The precision and care throughout my treatment was exceptional.",
+      duration: "6 months recovery",
+      highlight: "5cm Lengthening"
+    }
+  ];
+
+  const [activeTransformation, setActiveTransformation] = useState(0);
+
   // Duplicate testimonials for seamless infinite scroll
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
@@ -92,14 +124,131 @@ const TestimonialsSection = () => {
       </div>
       
       <div className="relative w-full flex flex-col z-10">
-        <div className="text-center mb-4 md:mb-8 px-4">
+        {/* Section Title */}
+        <div className="text-center mb-6 md:mb-10 px-4">
           <h2 className="text-2xl font-bold text-[#0b6f66] sm:text-3xl md:text-4xl lg:text-5xl mb-2 md:mb-4">
-            Patient <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Testimonials</span>
+            Patient <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Transformations</span>
           </h2>
-          <div className="w-16 md:w-24 h-1 bg-[#d5a028] mx-auto"></div>
+          <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">Real stories of recovery and renewed hope from our patients</p>
+          <div className="w-16 md:w-24 h-1 bg-[#d5a028] mx-auto mt-3 md:mt-4"></div>
+        </div>
+
+        {/* Featured Transformation Showcase */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-10 md:mb-16">
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] p-1">
+            <div className="bg-white rounded-xl md:rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                
+                {/* Left - Before/After Images Side by Side */}
+                <div className="relative bg-gray-100 p-4 md:p-6 lg:p-8 flex flex-col justify-center">
+                  <div className="grid grid-cols-2 gap-3 md:gap-4">
+                    {/* Before Image */}
+                    <div className="relative group">
+                      <div className="absolute top-2 left-2 z-10 px-2 py-0.5 md:px-3 md:py-1 bg-gray-900/80 backdrop-blur-sm text-white text-[10px] md:text-xs font-bold rounded-full">
+                        BEFORE
+                      </div>
+                      <div className="relative w-full aspect-[3/4] rounded-lg md:rounded-xl overflow-hidden shadow-lg">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-[1]"></div>
+                        <img 
+                          src={transformations[activeTransformation].beforeImage}
+                          alt="Before treatment"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* After Image */}
+                    <div className="relative group">
+                      <div className="absolute top-2 left-2 z-10 px-2 py-0.5 md:px-3 md:py-1 bg-[#0b6f66] backdrop-blur-sm text-white text-[10px] md:text-xs font-bold rounded-full">
+                        AFTER
+                      </div>
+                      <div className="relative w-full aspect-[3/4] rounded-lg md:rounded-xl overflow-hidden shadow-lg ring-2 ring-[#0b6f66]/30">
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b6f66]/20 to-transparent z-[1]"></div>
+                        <img 
+                          src={transformations[activeTransformation].afterImage}
+                          alt="After treatment"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Transformation Selector Dots */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {transformations.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setActiveTransformation(index)}
+                        className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                          activeTransformation === index 
+                            ? 'bg-[#0b6f66] scale-125' 
+                            : 'bg-gray-300 hover:bg-gray-400'
+                        }`}
+                        aria-label={`View transformation ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right - Patient Story */}
+                <div className="p-5 md:p-8 lg:p-10 flex flex-col justify-center">
+                  {/* Highlight Badge */}
+                  <div className="inline-flex items-center gap-2 mb-4 md:mb-6">
+                    <span className="px-3 py-1.5 md:px-4 md:py-2 bg-gradient-to-r from-[#d5a028] to-[#f4c430] text-white text-xs md:text-sm font-bold rounded-full shadow-md">
+                      {transformations[activeTransformation].highlight}
+                    </span>
+                    <span className="px-3 py-1.5 md:px-4 md:py-2 bg-[#0b6f66]/10 text-[#0b6f66] text-xs md:text-sm font-semibold rounded-full">
+                      {transformations[activeTransformation].duration}
+                    </span>
+                  </div>
+
+                  {/* Procedure */}
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#0b6f66] mb-2 md:mb-3">
+                    {transformations[activeTransformation].procedure}
+                  </h3>
+
+                  {/* Patient Story */}
+                  <div className="relative mb-4 md:mb-6">
+                    <svg className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 text-[#d5a028]/30" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                    <p className="text-gray-600 text-sm md:text-base lg:text-lg leading-relaxed pl-4 md:pl-6">
+                      {transformations[activeTransformation].story}
+                    </p>
+                  </div>
+
+                  {/* Patient Info */}
+                  <div className="flex items-center gap-4 pt-4 md:pt-6 border-t border-gray-200">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#0b6f66] to-[#0a5d54] flex items-center justify-center text-white text-lg md:text-xl font-bold shadow-md">
+                      {transformations[activeTransformation].name.charAt(0)}
+                    </div>
+                    <div>
+                      <div className="font-bold text-gray-900 text-base md:text-lg">{transformations[activeTransformation].name}</div>
+                      <div className="text-gray-500 text-sm">Age {transformations[activeTransformation].age} • Recovered Patient</div>
+                    </div>
+                    {/* Rating */}
+                    <div className="ml-auto flex gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 md:w-5 md:h-5 text-[#d5a028]" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
-        {/* Infinite Scrolling Container */}
+        {/* Testimonials Title */}
+        <div className="text-center mb-4 md:mb-6 px-4">
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-800">
+            More Patient <span className="text-[#0b6f66]">Reviews</span>
+          </h3>
+        </div>
+        
+        {/* Infinite Scrolling Testimonials - Smaller */}
         <div className="flex items-center overflow-hidden w-full py-2 md:py-4">
           <div className="w-full relative">
             {/* Scrolling Track */}
@@ -107,28 +256,27 @@ const TestimonialsSection = () => {
               {duplicatedTestimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="group relative flex-shrink-0 w-[55vw] sm:w-[45vw] md:w-[35vw] lg:w-[28vw] xl:w-[22vw] max-w-[280px] rounded-lg md:rounded-xl bg-white border border-gray-200 shadow-sm p-3 md:p-5 hover:shadow-md hover:border-[#0b6f66]/30 transition-all duration-300 hover:-translate-y-1"
+                  className="group relative flex-shrink-0 w-[50vw] sm:w-[40vw] md:w-[28vw] lg:w-[22vw] xl:w-[18vw] max-w-[240px] rounded-lg bg-white border border-gray-200 shadow-sm p-2.5 md:p-4 hover:shadow-md hover:border-[#0b6f66]/30 transition-all duration-300 hover:-translate-y-1"
                 >
                   {/* Rating Stars */}
-                  <div className="flex gap-0.5 mb-1.5 md:mb-2">
+                  <div className="flex gap-0.5 mb-1 md:mb-1.5">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <svg key={i} className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#d5a028]" fill="currentColor" viewBox="0 0 20 20">
+                      <svg key={i} className="w-2 h-2 md:w-2.5 md:h-2.5 text-[#d5a028]" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
 
                   {/* Content */}
-                  <p className="text-[11px] leading-relaxed text-gray-600 sm:text-xs md:text-sm lg:text-base mb-2 md:mb-3 line-clamp-4 md:line-clamp-none">
+                  <p className="text-[10px] leading-relaxed text-gray-600 sm:text-[11px] md:text-xs mb-1.5 md:mb-2 line-clamp-3">
                     &ldquo;{testimonial.content}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="border-t border-gray-200 pt-1.5 md:pt-2">
-                    <div className="font-bold text-[#0b6f66] text-xs md:text-sm lg:text-base">{testimonial.name}</div>
-                    <div className="text-[10px] md:text-xs lg:text-sm text-gray-500 mt-0.5">{testimonial.role}</div>
+                  <div className="border-t border-gray-100 pt-1.5 md:pt-2">
+                    <div className="font-bold text-[#0b6f66] text-[10px] md:text-xs">{testimonial.name}</div>
+                    <div className="text-[9px] md:text-[10px] text-gray-500">{testimonial.role}</div>
                   </div>
-
                 </div>
               ))}
             </div>
