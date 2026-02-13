@@ -45,10 +45,10 @@ const HeroSection = () => {
 
           {/* Main Title */}
           <div className="relative mb-3 sm:mb-6 md:mb-8 w-full">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
-              <span className="block text-white/90 whitespace-nowrap">Advanced <span className="relative inline-block"><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028]">Orthopaedic</span><span className="absolute -bottom-0.5 md:-bottom-2 left-0 right-0 h-[2px] md:h-1 bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028] rounded-full opacity-60"></span></span></span>
-              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white/90">&amp;</span>
-              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white/90">Limb Reconstruction</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
+              <span className="block whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]">Advanced Orthopaedic</span>
+              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]">&amp;</span>
+              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]">Limb Reconstruction</span>
             </h1>
           </div>
 
@@ -64,11 +64,11 @@ const HeroSection = () => {
           {/* Doctor info card */}
           <div className="relative mb-6 sm:mb-8 md:mb-12 px-5 py-4 sm:px-6 sm:py-5 md:px-10 md:py-6 rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm w-full max-w-md sm:max-w-lg md:max-w-2xl">
             <div className="absolute -top-px left-1/2 -translate-x-1/2 w-16 sm:w-24 h-px bg-gradient-to-r from-transparent via-[#d5a028] to-transparent"></div>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430] mb-1 sm:mb-2">Dr. Tushar Nayak</p>
-            <p className="text-xs sm:text-sm md:text-base text-white/70 font-semibold mb-2 sm:mb-3">MS Ortho (AIIMS, Delhi) &bull; DNB &bull; MNAMS</p>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430] mb-1 sm:mb-2">Dr. Himanshu Singh</p>
+            <p className="text-xs sm:text-sm md:text-base text-white/70 font-semibold mb-2 sm:mb-3">MBBS &bull; MS Ortho &bull; DNB Ortho &bull; MNAMS</p>
             <div className="flex flex-col gap-0.5 sm:gap-1 items-center">
-              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Fellow &mdash; Joint Replacement & Arthroscopy (Innsbruck)</span>
-              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Advanced Shoulder Surgery (Brisbane)</span>
+              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Fellow &mdash; Ilizarov &amp; Limb Reconstruction (Russia)</span>
+              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Consultant &mdash; Orthopaedics &amp; Trauma Care</span>
             </div>
           </div>
 

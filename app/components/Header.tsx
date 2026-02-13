@@ -46,8 +46,8 @@ const Header = () => {
                 className="font-[var(--font-open-sans)] text-[7px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-snug mt-0.5 font-semibold"
                 style={{ color: '#c9a227' }}
               >
-                Orthopaedics | Limb Reconstruction | Joint<br className="md:hidden" />
-                <span className="hidden md:inline"> </span>Replacement | Arthroscopy &amp; Sports medicine
+                <span className="md:hidden">Orthopaedics | Limb Reconstruction | Joint Replacement<br />Arthroscopy &amp; Sports medicine</span>
+                <span className="hidden md:block">Orthopaedics | Limb Reconstruction<br /> Joint Replacement | Arthroscopy &amp; Sports medicine</span>
               </p>
             </div>
           </Link>

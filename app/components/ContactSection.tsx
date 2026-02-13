@@ -108,11 +108,11 @@ const ContactSection = () => {
             {/* Visit Us - Clinic Timings */}
             <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 md:p-6">
               <div className="flex items-start gap-3 md:gap-4">
-                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                {/* <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
                   <svg className="h-5 w-5 md:h-6 md:w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                </div>
+                </div> */}
                 <div className="flex-1">
                   <h3 className="text-sm md:text-base font-bold text-white mb-3">Visit Us | Orthopaedics</h3>
                   <div className="space-y-3 text-xs md:text-sm">
