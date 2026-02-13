@@ -91,8 +91,7 @@ const TestimonialsSection = () => {
       name: "Vikram Malhotra",
       age: 45,
       procedure: "Limb Reconstruction - Ilizarov Method",
-      beforeImage: "/images/WhatsApp Image 2026-01-14 at 14.32.55.jpeg",
-      afterImage: "/images/WhatsApp Image 2026-01-14 at 14.32.56.jpeg",
+      combinedImage: "/images/pmd_limb_discrepancy_before_after_en.webp",
       story: "After a severe motorcycle accident, doctors told me amputation was inevitable. My leg was shattered with multiple fractures and significant bone loss. Then I met Dr. Himanshu Singh. Using the Ilizarov technique, he meticulously reconstructed my leg over 8 months. Today, I walk without any aid and have returned to my normal life. Dr. Singh didn't just save my leg—he gave me my independence back.",
       duration: "8 months recovery",
       highlight: "Avoided Amputation"
@@ -102,8 +101,7 @@ const TestimonialsSection = () => {
       name: "Priya Sharma",
       age: 32,
       procedure: "Leg Length Correction",
-      beforeImage: "/images/WhatsApp Image 2026-01-14 at 14.32.57.jpeg",
-      afterImage: "/images/WhatsApp Image 2026-01-14 at 14.32.58.jpeg",
+      combinedImage: "/images/pmd_limb_discrepancy_before_after_en.webp",
       story: "Born with a significant leg length discrepancy, I spent my entire childhood struggling with a limp and constant back pain. After consulting with Dr. Singh, I underwent limb lengthening surgery. The transformation has been incredible—my legs are now equal in length, and I can walk confidently for the first time in my life. The precision and care throughout my treatment was exceptional.",
       duration: "6 months recovery",
       highlight: "5cm Lengthening"
@@ -139,37 +137,15 @@ const TestimonialsSection = () => {
             <div className="bg-white rounded-xl md:rounded-2xl overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 
-                {/* Left - Before/After Images Side by Side */}
+                {/* Left - Before/After Combined Image */}
                 <div className="relative bg-gray-100 p-4 md:p-6 lg:p-8 flex flex-col justify-center">
-                  <div className="grid grid-cols-2 gap-3 md:gap-4">
-                    {/* Before Image */}
-                    <div className="relative group">
-                      <div className="absolute top-2 left-2 z-10 px-2 py-0.5 md:px-3 md:py-1 bg-gray-900/80 backdrop-blur-sm text-white text-[10px] md:text-xs font-bold rounded-full">
-                        BEFORE
-                      </div>
-                      <div className="relative w-full aspect-[3/4] rounded-lg md:rounded-xl overflow-hidden shadow-lg">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-[1]"></div>
-                        <img 
-                          src={transformations[activeTransformation].beforeImage}
-                          alt="Before treatment"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* After Image */}
-                    <div className="relative group">
-                      <div className="absolute top-2 left-2 z-10 px-2 py-0.5 md:px-3 md:py-1 bg-[#0b6f66] backdrop-blur-sm text-white text-[10px] md:text-xs font-bold rounded-full">
-                        AFTER
-                      </div>
-                      <div className="relative w-full aspect-[3/4] rounded-lg md:rounded-xl overflow-hidden shadow-lg ring-2 ring-[#0b6f66]/30">
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b6f66]/20 to-transparent z-[1]"></div>
-                        <img 
-                          src={transformations[activeTransformation].afterImage}
-                          alt="After treatment"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
+                  <div className="relative group">
+                    <div className="relative w-full rounded-xl md:rounded-2xl overflow-hidden shadow-xl">
+                      <img 
+                        src={transformations[activeTransformation].combinedImage}
+                        alt="Before and After treatment"
+                        className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                      />
                     </div>
                   </div>
                   

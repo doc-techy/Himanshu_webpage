@@ -7,7 +7,7 @@ export default function ServicesPage() {
     {
       id: "orthopaedics",
       title: "Orthopaedics",
-      icon: "🦴",
+      iconPosition: "0% 0%", // top-left: hip joint
       description: "Comprehensive orthopaedic care for all bone and joint conditions with advanced diagnostic and treatment approaches.",
       offerings: [
         "Complete bone and joint evaluation",
@@ -20,7 +20,7 @@ export default function ServicesPage() {
     {
       id: "limb-reconstruction",
       title: "Limb Reconstruction",
-      icon: "🔧",
+      iconPosition: "50% 0%", // top-middle: bone fracture
       description: "Advanced techniques for restoring limb function and structure using modern surgical methods.",
       offerings: [
         "Complex limb salvage procedures",
@@ -33,7 +33,7 @@ export default function ServicesPage() {
     {
       id: "ilizarov",
       title: "Ilizarov Technique",
-      icon: "⚙️",
+      iconPosition: "0% 50%", // middle-left: ilizarov frame
       description: "Specialized Ilizarov external fixation technique for correcting complex limb deformities and bone defects.",
       offerings: [
         "Limb lengthening procedures",
@@ -46,7 +46,7 @@ export default function ServicesPage() {
     {
       id: "robotic-surgery",
       title: "Robotic Joint Replacement",
-      icon: "🤖",
+      iconPosition: "100% 0%", // top-right: x-ray monitor
       description: "Precision robotic-assisted joint replacement surgery for optimal alignment and faster recovery.",
       offerings: [
         "Robotic knee replacement",
@@ -59,7 +59,7 @@ export default function ServicesPage() {
     {
       id: "arthroscopy",
       title: "Arthroscopy & Sports Medicine",
-      icon: "🏃",
+      iconPosition: "50% 50%", // middle-center: knee arthroscopy
       description: "Minimally invasive arthroscopic procedures and comprehensive sports injury management.",
       offerings: [
         "Knee arthroscopy (ACL, meniscus)",
@@ -72,7 +72,7 @@ export default function ServicesPage() {
     {
       id: "fracture-spine",
       title: "Fracture & Spine Care",
-      icon: "🏥",
+      iconPosition: "100% 50%", // middle-right: spine fixation
       description: "Expert management of fractures and comprehensive spine care services with modern techniques.",
       offerings: [
         "Emergency fracture care",
@@ -131,7 +131,16 @@ export default function ServicesPage() {
                 <div className="flex flex-col md:flex-row">
                   {/* Left - Icon & Title */}
                   <div className="bg-[#d5a028]/20 p-4 md:p-6 md:w-1/3 flex flex-col items-center justify-center text-center">
-                    <div className="text-4xl md:text-5xl mb-2">{service.icon}</div>
+                    <div className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 mb-3 overflow-hidden">
+                      <div 
+                        className="w-full h-full bg-no-repeat"
+                        style={{
+                          backgroundImage: "url('/images/icons.jpeg')",
+                          backgroundSize: "300%",
+                          backgroundPosition: service.iconPosition,
+                        }}
+                      />
+                    </div>
                     <h2 className="text-lg md:text-xl font-bold text-white">{service.title}</h2>
                   </div>
                   

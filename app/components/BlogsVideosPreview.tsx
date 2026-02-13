@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const BlogsPreview = () => {
+  const [showAllBlogs, setShowAllBlogs] = useState(false);
+  
   const blogs = [
     {
       title: "Understanding Robotic Joint Replacement",
@@ -61,8 +66,8 @@ const BlogsPreview = () => {
         </div>
 
         {/* Blogs Grid */}
-        <div className="grid gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-          {blogs.map((blog, index) => (
+        <div className="grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {blogs.slice(0, showAllBlogs ? blogs.length : 6).map((blog, index) => (
             <div
               key={index}
               className="group relative rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer p-[2px]"
@@ -104,8 +109,19 @@ const BlogsPreview = () => {
           ))}
         </div>
 
-        {/* View More Button */}
-        <div className="text-center mt-8">
+        {/* Load More / View All Button */}
+        <div className="text-center mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center">
+          {!showAllBlogs && blogs.length > 6 && (
+            <button 
+              onClick={() => setShowAllBlogs(true)}
+              className="sm:hidden inline-flex items-center gap-2 px-6 py-3 bg-gray-100 text-[#0b6f66] text-sm font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+            >
+              Load More
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
           <Link 
             href="/blogs"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#0b6f66] text-white text-sm font-semibold rounded-lg hover:bg-[#095c54] transition-colors shadow-md hover:shadow-lg"
@@ -122,6 +138,8 @@ const BlogsPreview = () => {
 };
 
 const VideosPreview = () => {
+  const [showAllVideos, setShowAllVideos] = useState(false);
+  
   const videos = [
     {
       title: "Recovery After Orthopaedic Surgery",
@@ -185,8 +203,8 @@ const VideosPreview = () => {
         </div>
 
         {/* Videos Grid */}
-        <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
-          {videos.map((video, index) => (
+        <div className="grid gap-3 md:gap-4 grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+          {videos.slice(0, showAllVideos ? videos.length : 6).map((video, index) => (
             <div
               key={index}
               className="group rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 overflow-hidden hover:bg-white/15 transition-all duration-300 cursor-pointer"
@@ -230,8 +248,19 @@ const VideosPreview = () => {
           ))}
         </div>
 
-        {/* View More Button */}
-        <div className="text-center mt-8">
+        {/* Load More / View All Button */}
+        <div className="text-center mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center">
+          {!showAllVideos && videos.length > 6 && (
+            <button 
+              onClick={() => setShowAllVideos(true)}
+              className="sm:hidden inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white text-sm font-semibold rounded-lg hover:bg-white/20 transition-colors border border-white/20"
+            >
+              Load More
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
           <Link 
             href="/videos"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#d5a028] text-white text-sm font-semibold rounded-lg hover:bg-[#c08f1f] transition-colors shadow-md hover:shadow-lg"

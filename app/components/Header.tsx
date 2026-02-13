@@ -24,25 +24,31 @@ const Header = () => {
       
       <div className="mx-auto w-full max-w-7xl px-3 py-2 sm:px-4 sm:py-3 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo and Title */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity min-w-0">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity">
             <Image
               src="/images/logo.gif"
               alt="Recover Clinic Logo"
-              width={64}
-              height={64}
-              className="h-9 w-9 sm:h-11 sm:w-11 md:h-14 md:w-14 flex-shrink-0 object-contain"
+              width={80}
+              height={80}
+              className="h-14 w-14 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 flex-shrink-0 object-contain"
               priority
               unoptimized
             />
-            <div className="flex flex-col leading-tight min-w-0">
-              <div className="text-sm font-bold tracking-wide text-[#0b6f66] sm:text-lg md:text-xl lg:text-2xl truncate">
+            <div className="flex flex-col justify-center">
+              <h1 
+                className="font-[var(--font-oswald)] text-[20px] sm:text-lg md:text-[22px] lg:text-[26px] leading-none uppercase font-bold tracking-wider"
+                style={{ color: '#1a9e94' }}
+              >
                 RECOVER CLINIC
-              </div>
-              <div className="text-[5px] font-semibold uppercase tracking-wide text-[#d5a028] sm:text-[7px] md:text-[10px] leading-tight">
-                ROBOTIC SURGERY CENTER<br />
-                &amp; LIMB RECONSTRUCTION
-              </div>
+              </h1>
+              <p 
+                className="font-[var(--font-open-sans)] text-[7px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-snug mt-0.5 font-semibold"
+                style={{ color: '#c9a227' }}
+              >
+                Orthopaedics | Limb Reconstruction | Joint<br className="md:hidden" />
+                <span className="hidden md:inline"> </span>Replacement | Arthroscopy &amp; Sports medicine
+              </p>
             </div>
           </Link>
 
@@ -89,11 +95,11 @@ const Header = () => {
           {/* Mobile Hamburger Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg bg-[#0b6f66]/5 hover:bg-[#0b6f66]/10 transition-colors"
+            className="md:hidden relative w-12 h-12 flex items-center justify-center rounded-lg bg-[#0b6f66]/5 hover:bg-[#0b6f66]/10 transition-colors"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
-            <div className="w-5 h-4 flex flex-col justify-between">
+            <div className="w-6 h-5 flex flex-col justify-between">
               <span 
                 className={`block h-0.5 w-full bg-[#0b6f66] rounded-full transform transition-all duration-300 origin-center ${
                   isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
@@ -119,7 +125,7 @@ const Header = () => {
         className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ top: '56px' }}
+        style={{ top: '72px' }}
         onClick={closeMenu}
       />
 
