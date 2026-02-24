@@ -25,31 +25,15 @@ const Header = () => {
       <div className="mx-auto w-full max-w-7xl px-3 py-2 sm:px-4 sm:py-3 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity">
+          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
             <Image
-              src="/images/logo.gif"
+              src="/images/logo.png"
               alt="Recover Clinic Logo"
-              width={80}
-              height={80}
-              className="h-14 w-14 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 flex-shrink-0 object-contain"
+              width={1024}
+              height={301}
+              className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto flex-shrink-0 object-contain"
               priority
-              unoptimized
             />
-            <div className="flex flex-col justify-center">
-              <h1 
-                className="font-[var(--font-oswald)] text-[20px] sm:text-lg md:text-[22px] lg:text-[26px] leading-none uppercase font-bold tracking-wider"
-                style={{ color: '#1a9e94' }}
-              >
-                RECOVER CLINIC
-              </h1>
-              <p 
-                className="font-[var(--font-open-sans)] text-[7px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-snug mt-0.5 font-semibold"
-                style={{ color: '#c9a227' }}
-              >
-                <span className="md:hidden">Orthopaedics | Limb Reconstruction | Joint Replacement<br />Arthroscopy &amp; Sports medicine</span>
-                <span className="hidden md:block">Orthopaedics | Limb Reconstruction<br /> Joint Replacement | Arthroscopy &amp; Sports medicine</span>
-              </p>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}

@@ -57,7 +57,7 @@ export default function RootLayout({
           </a>
           {/* Instagram */}
           <a 
-            href="https://instagram.com" 
+            href="https://www.instagram.com/doctorhimanshusingh/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-11 h-11 bg-[#0b6f66] text-white hover:w-14 hover:bg-[#d5a028] transition-all duration-300"
@@ -69,7 +69,7 @@ export default function RootLayout({
           </a>
           {/* Facebook */}
           <a 
-            href="https://facebook.com" 
+            href="https://www.facebook.com/profile.php?id=61581468332725" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-11 h-11 bg-[#0b6f66] text-white hover:w-14 hover:bg-[#d5a028] transition-all duration-300"
@@ -81,7 +81,7 @@ export default function RootLayout({
           </a>
           {/* YouTube */}
           <a 
-            href="https://youtube.com" 
+            href="https://www.youtube.com/@LimbReconstruction" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-11 h-11 bg-[#0b6f66] text-white hover:w-14 hover:bg-[#d5a028] transition-all duration-300"
@@ -93,7 +93,7 @@ export default function RootLayout({
           </a>
           {/* LinkedIn */}
           <a 
-            href="https://linkedin.com" 
+            href="https://www.linkedin.com/in/dr-himanshu-singh-2a280835/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-11 h-11 bg-[#0b6f66] text-white hover:w-14 hover:bg-[#d5a028] transition-all duration-300"
