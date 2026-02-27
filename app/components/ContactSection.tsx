@@ -75,7 +75,7 @@ const ContactSection = () => {
                       />
                     </div>
                     <span className="font-bold text-[#f4c430] text-sm md:text-base lg:text-lg leading-tight">
-                      Recover Clinic, Kaggadasapura
+                      Recover Clinic, Sanjayanagara
                     </span>
                   </div>
                   <div className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/20 px-3 py-1.5 text-white/95">
