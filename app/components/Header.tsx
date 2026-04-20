@@ -1,11 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Prevent random jump to previous scroll position on hard reload.
+    // On reload, we intentionally reset to top for the home page.
+    const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    const isReload = nav?.type === "reload";
+    const isHome = window.location.pathname === "/";
+    if (!isReload || !isHome) return;
+
+    // If the user reloads while a hash is present, clear it so reload never re-jumps to a section.
+    if (window.location.hash) {
+      const cleanUrl = `${window.location.pathname}${window.location.search}`;
+      window.history.replaceState(null, "", cleanUrl);
+    }
+
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    const forceTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    forceTop();
+    requestAnimationFrame(forceTop);
+    const timeoutId = window.setTimeout(forceTop, 220);
+    const onPageShow = () => forceTop();
+    window.addEventListener("pageshow", onPageShow);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("pageshow", onPageShow);
+      window.history.scrollRestoration = previousRestoration;
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -209,8 +209,7 @@ function StageCarousel({
   if (images.length === 0) {
     return (
       <div
-        className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200/90 bg-gradient-to-b from-gray-50/90 to-gray-50/40 px-4 text-center"
-        style={{ aspectRatio: "4 / 3" }}
+        className="flex aspect-[3/4] w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200/90 bg-gradient-to-b from-gray-50/90 to-gray-50/40 px-4 text-center sm:aspect-[4/3]"
         aria-hidden
       >
         <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
@@ -236,19 +235,15 @@ function StageCarousel({
       : "bg-[#0b6f66] text-white ring-1 ring-[#0b6f66]/30";
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-3">
+    <div className="flex w-full min-w-0 flex-col gap-2 sm:gap-3">
       {/*
        * Locked-size stage: aspect-ratio fixes the ratio, and the container itself
        * is capped with clamp() so the outer card never grows or shrinks between cases
        * regardless of the image aspect ratio inside it.
        */}
       <div
-        className="group relative w-full self-center overflow-hidden rounded-2xl border border-gray-200/90 bg-gradient-to-b from-white to-gray-50/40 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_6px_18px_rgba(15,23,42,0.06)] ring-1 ring-black/[0.03]"
-        style={{
-          aspectRatio: "4 / 3",
-          maxWidth: "min(100%, 560px)",
-          maxHeight: "clamp(240px, 42vh, 420px)",
-        }}
+        className="group relative aspect-[3/4] w-full max-h-[360px] self-center overflow-hidden rounded-2xl border border-gray-200/90 bg-gradient-to-b from-white to-gray-50/40 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_6px_18px_rgba(15,23,42,0.06)] ring-1 ring-black/[0.03] sm:aspect-[4/3] sm:max-h-[420px]"
+        style={{ maxWidth: "min(100%, 560px)" }}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         role="group"
@@ -346,7 +341,7 @@ function StageCarousel({
             </button>
 
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-2 z-10 flex justify-center gap-1.5"
+              className="pointer-events-none absolute inset-x-0 bottom-2 z-10 hidden justify-center gap-1.5 sm:flex"
               aria-hidden
             >
               {images.map((_, i) => (
@@ -371,13 +366,10 @@ function StageCarousel({
        * only one frame) so panels never change size between cases. The inner list
        * is empty when count <= 1, just acting as a consistent spacer.
        */}
-      <div
-        className="flex h-16 items-center sm:h-[76px]"
-        aria-hidden={images.length <= 1}
-      >
+      <div className="flex h-14 items-center sm:h-[76px]" aria-hidden={images.length <= 1}>
         {images.length > 1 ? (
           <div
-            className="-mx-1 flex w-full snap-x snap-mandatory gap-2 overflow-x-auto px-1 pb-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:thin]"
+            className="-mx-1 flex w-full snap-x snap-mandatory gap-1.5 overflow-x-auto px-1 pb-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:thin] sm:gap-2"
             role="tablist"
             aria-label={`${altPrefix} frames`}
           >
@@ -393,7 +385,7 @@ function StageCarousel({
                     bump();
                     goTo(i, i > safeIndex ? 1 : -1);
                   }}
-                  className={`relative flex h-14 w-16 shrink-0 snap-start items-center justify-center overflow-hidden rounded-xl border bg-white p-1 transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b6f66]/40 sm:h-[68px] sm:w-20 ${
+                  className={`relative flex h-12 w-14 shrink-0 snap-start items-center justify-center overflow-hidden rounded-lg border bg-white p-1 transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b6f66]/40 sm:h-[68px] sm:w-20 sm:rounded-xl ${
                     active
                       ? variant === "after"
                         ? "border-[#0b6f66] ring-2 ring-[#0b6f66]/35 shadow-md"
@@ -427,7 +419,7 @@ function StageCarousel({
 function BeforeAfterConnector() {
   return (
     <>
-      <div className="flex w-full items-center gap-3 py-1 xl:hidden">
+      <div className="flex w-full items-center gap-2 py-0.5 xl:hidden">
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 to-gray-200" />
         <div
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-[#0b6f66] shadow-[0_2px_8px_rgba(15,23,42,0.08)]"
@@ -764,17 +756,56 @@ const TestimonialsSection = () => {
     return () => clearInterval(id);
   }, [handleNext, slideCount, carouselPaused, lightbox]);
 
-  // Keep active case chip visible in the horizontal strip (mobile + desktop)
+  // Keep active case chip visible WITHOUT triggering page vertical scroll.
   useEffect(() => {
     const strip = caseStripRef.current;
     if (!strip || slideCount <= 0) return;
     const active = strip.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]');
-    active?.scrollIntoView({
+    if (!active) return;
+
+    const stripRect = strip.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const targetLeft =
+      strip.scrollLeft +
+      (activeRect.left - stripRect.left) -
+      (strip.clientWidth / 2 - active.clientWidth / 2);
+
+    strip.scrollTo({
+      left: Math.max(0, targetLeft),
       behavior: "smooth",
-      inline: "center",
-      block: "nearest",
     });
   }, [safeSlideIndex, slideCount]);
+
+  // Mobile-safe hash navigation: when opening /#testimonials directly, account for fixed header.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const sectionId = "testimonials";
+
+    const scrollWithHeaderOffset = () => {
+      if (window.location.hash !== `#${sectionId}`) return;
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      const headerEl = document.querySelector("header");
+      const headerHeight =
+        headerEl instanceof HTMLElement ? headerEl.getBoundingClientRect().height : 0;
+      const mobileExtraGap = window.matchMedia("(max-width: 767px)").matches ? 12 : 8;
+      const targetY =
+        section.getBoundingClientRect().top +
+        window.scrollY -
+        Math.ceil(headerHeight + mobileExtraGap);
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "auto" });
+    };
+
+    // Initial attempt + a retry after layout/images settle.
+    scrollWithHeaderOffset();
+    const retryId = window.setTimeout(scrollWithHeaderOffset, 180);
+    window.addEventListener("hashchange", scrollWithHeaderOffset);
+
+    return () => {
+      window.clearTimeout(retryId);
+      window.removeEventListener("hashchange", scrollWithHeaderOffset);
+    };
+  }, []);
 
   const duplicatedTestimonials =
     testimonials.length > 0 ? [...testimonials, ...testimonials] : [];
@@ -782,7 +813,7 @@ const TestimonialsSection = () => {
   return (
     <section
       id="testimonials"
-      className="relative w-full overflow-hidden bg-[#fafafa] py-8 md:py-12 lg:py-16 scroll-mt-24"
+      className="relative w-full overflow-hidden bg-[#fafafa] py-6 md:py-12 lg:py-16 scroll-mt-28 sm:scroll-mt-32"
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-[#0b6f66]/[0.07] blur-3xl" />
@@ -799,7 +830,7 @@ const TestimonialsSection = () => {
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-6 max-w-3xl text-center md:mb-8">
+        <div className="mx-auto mb-4 max-w-3xl text-center md:mb-8">
           <h2 className="mb-3 text-balance text-3xl font-bold tracking-tight text-[#0b6f66] sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
             Patient{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] via-[#e8b82e] to-[#f4c430]">
@@ -911,7 +942,7 @@ const TestimonialsSection = () => {
                       {caption}
                     </span>
                     {count > 1 ? (
-                      <span className="rounded-full border border-gray-200 bg-white px-2.5 py-1 text-[11px] font-semibold tabular-nums text-gray-600 shadow-sm">
+                      <span className="hidden rounded-full border border-gray-200 bg-white px-2.5 py-1 text-[11px] font-semibold tabular-nums text-gray-600 shadow-sm sm:inline-flex">
                         {count} frames
                       </span>
                     ) : null}
@@ -920,7 +951,7 @@ const TestimonialsSection = () => {
 
                 return (
                   <>
-                    <div className="border-b border-gray-100/90 bg-gradient-to-br from-white via-white to-gray-50/40 px-4 pb-4 pt-5 sm:px-7 sm:pb-5 sm:pt-6">
+                    <div className="border-b border-gray-100/90 bg-gradient-to-br from-white via-white to-gray-50/40 px-3 pb-3 pt-4 sm:px-7 sm:pb-5 sm:pt-6">
                       <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                         <div className="min-w-0 flex-1 space-y-2.5">
                           {showHeaderBlock ? (
@@ -948,7 +979,7 @@ const TestimonialsSection = () => {
                             </>
                           ) : null}
                         </div>
-                        <div className="flex shrink-0 items-center gap-3 rounded-2xl border border-gray-200/95 bg-white px-4 py-2.5 shadow-sm sm:self-start">
+                        <div className="hidden shrink-0 items-center gap-3 rounded-2xl border border-gray-200/95 bg-white px-4 py-2.5 shadow-sm sm:flex sm:self-start">
                           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0b6f66] to-[#095a52] text-sm font-bold text-white shadow-md shadow-[#0b6f66]/25">
                             {String(safeSlideIndex + 1).padStart(2, "0")}
                           </div>
@@ -969,10 +1000,10 @@ const TestimonialsSection = () => {
                     <div
                       className={`grid grid-cols-1 ${hasTextPanel ? "lg:grid-cols-[1fr_minmax(280px,360px)]" : ""}`}
                     >
-                      <div className="border-t border-gray-100/80 bg-gradient-to-b from-[#0b6f66]/[0.04] via-gray-50/30 to-white p-4 sm:p-6">
+                      <div className="border-t border-gray-100/80 bg-gradient-to-b from-[#0b6f66]/[0.04] via-gray-50/30 to-white p-3 sm:p-6">
                         {showLabeledSplit ? (
-                          <div className="flex w-full flex-col gap-6 xl:flex-row xl:items-stretch xl:gap-5">
-                            <div className="flex min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
+                          <div className="flex w-full flex-col gap-2 xl:flex-row xl:items-stretch xl:gap-5">
+                            <div className="flex min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-3 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
                               {stageHeader(
                                 t.beforeCaption?.trim() || "Before",
                                 beforeImgs.length,
@@ -988,7 +1019,7 @@ const TestimonialsSection = () => {
                               />
                             </div>
                             <BeforeAfterConnector />
-                            <div className="flex min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
+                            <div className="flex min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-3 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
                               {stageHeader(
                                 t.afterCaption?.trim() || "After",
                                 afterImgs.length,
@@ -1005,7 +1036,7 @@ const TestimonialsSection = () => {
                             </div>
                           </div>
                         ) : singleSrc ? (
-                          <div className="flex flex-col justify-center overflow-hidden rounded-2xl border border-white/80 bg-white/90 p-4 ring-1 ring-gray-100 sm:p-6">
+                          <div className="flex flex-col justify-center overflow-hidden rounded-2xl border border-white/80 bg-white/90 p-3 ring-1 ring-gray-100 sm:p-6">
                             <StageCarousel
                               images={[singleSrc]}
                               altPrefix={t.title}
@@ -1022,7 +1053,7 @@ const TestimonialsSection = () => {
                           />
                         )}
 
-                        <div className="mt-5 space-y-3">
+                        <div className="mt-3 space-y-2 sm:mt-5 sm:space-y-3">
                           <div
                             className="h-1.5 w-full max-w-xl mx-auto overflow-hidden rounded-full bg-gray-200/90"
                             role="presentation"
@@ -1039,7 +1070,7 @@ const TestimonialsSection = () => {
                           </div>
                           <div
                             ref={caseStripRef}
-                            className="-mx-1 flex snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth pb-1 px-1 [scrollbar-width:thin] [-webkit-overflow-scrolling:touch]"
+                            className="-mx-1 hidden snap-x snap-mandatory gap-2 overflow-x-auto scroll-smooth pb-1 px-1 [scrollbar-width:thin] [-webkit-overflow-scrolling:touch] sm:flex"
                             role="tablist"
                             aria-label="Browse cases"
                           >
