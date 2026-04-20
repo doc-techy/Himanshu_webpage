@@ -67,10 +67,16 @@ const HeroSection = () => {
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430] mb-1 sm:mb-2">Dr. Himanshu Singh</p>
             <p className="text-xs sm:text-sm md:text-base text-white/70 font-semibold mb-1">Consultant Orthopaedic &amp; Limb Reconstruction surgeon</p>
             <p className="text-xs sm:text-sm md:text-base text-white/70 font-semibold mb-2 sm:mb-3">MBBS, D.Ortho, DNB Ortho</p>
-            <div className="flex flex-col gap-0.5 sm:gap-1 items-center">
-              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Fellowship in Trauma &amp; Ilizarov Limb Reconstruction (Ilizarov Center Russia)</span>
-              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Fellowship in Joint Replacement</span>
-              <span className="text-[10px] sm:text-xs md:text-sm text-white/60 font-medium">Fellowship in Arthroscopy &amp; Sports Medicine</span>
+            <div className="flex flex-col gap-1 sm:gap-1.5 items-center text-center max-w-xl mx-auto">
+              <span className="text-xs sm:text-sm md:text-base text-white/70 font-medium leading-snug">
+                Fellowship in Trauma &amp; Ilizarov Limb Reconstruction (Ilizarov Center Russia)
+              </span>
+              <span className="text-xs sm:text-sm md:text-base text-white/70 font-medium leading-snug">
+                Fellowship in Joint Replacement
+              </span>
+              <span className="text-xs sm:text-sm md:text-base text-white/70 font-medium leading-snug">
+                Fellowship in Arthroscopy &amp; Sports Medicine
+              </span>
             </div>
           </div>
 

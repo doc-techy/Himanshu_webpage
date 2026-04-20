@@ -41,7 +41,7 @@ const ContactSection = () => {
                   </svg>
                 </div>
                 <span className="text-[10px] md:text-xs text-white/70 mb-0.5">Call Us</span>
-                <span className="text-xs md:text-sm font-bold text-white text-center leading-tight">+91 72820 29272</span>
+                <span className="text-xs md:text-sm font-bold text-white text-center leading-tight">72820 29272</span>
               </a>
 
               {/* Email Card */}
@@ -105,7 +105,7 @@ const ContactSection = () => {
                     />
                   </div>
                   <a
-                    href="https://share.google/jL6hQ06FTnXZpsajY"
+                    href="https://maps.app.goo.gl/5LWGnFr7ESjP2fWn9"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#d5a028] px-4 py-2 text-xs md:text-sm font-bold text-[#0b443f] hover:bg-[#f4c430] transition-all"
@@ -160,7 +160,7 @@ const ContactSection = () => {
                     />
                   </div>
                   <a
-                    href="https://share.google/tRL1uVvSOcggMnNjo"
+                    href="https://maps.app.goo.gl/GXU8ygsNHQebqmkz8"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#d5a028] px-4 py-2 text-xs md:text-sm font-bold text-[#0b443f] hover:bg-[#f4c430] transition-all"

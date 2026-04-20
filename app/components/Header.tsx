@@ -24,16 +24,39 @@ const Header = () => {
       
       <div className="mx-auto w-full max-w-7xl px-3 py-2 sm:px-4 sm:py-3 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
+          {/* Logo: GIF + text (same copy as before full-bleed PNG) */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.gif"
               alt="Recover Clinic Logo"
-              width={1024}
-              height={301}
-              className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto flex-shrink-0 object-contain"
+              width={80}
+              height={80}
+              className="h-14 w-14 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 flex-shrink-0 object-contain"
               priority
+              unoptimized
             />
+            <div className="flex flex-col justify-center min-w-0">
+              <h1
+                className="font-[var(--font-oswald)] text-[20px] sm:text-lg md:text-[22px] lg:text-[26px] leading-none uppercase font-bold tracking-wider"
+                style={{ color: "#1a9e94" }}
+              >
+                RECOVER CLINIC
+              </h1>
+              <p
+                className="font-[var(--font-open-sans)] text-[7px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-snug mt-0.5 font-semibold"
+                style={{ color: "#c9a227" }}
+              >
+                <span className="md:hidden">
+                  Orthopaedics | Limb Reconstruction | Joint Replacement
+                  <br />
+                  Arthroscopy &amp; Sports medicine
+                </span>
+                <span className="hidden md:block">
+                  Orthopaedics | Limb Reconstruction
+                  <br /> Joint Replacement | Arthroscopy &amp; Sports medicine
+                </span>
+              </p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,18 +78,6 @@ const Header = () => {
               className="px-4 py-2 text-sm font-semibold text-[#2b4c56] rounded-lg hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
             >
               Services
-            </Link>
-            <Link 
-              href="/blogs" 
-              className="px-4 py-2 text-sm font-semibold text-[#2b4c56] rounded-lg hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
-            >
-              Blogs
-            </Link>
-            <Link 
-              href="/videos" 
-              className="px-4 py-2 text-sm font-semibold text-[#2b4c56] rounded-lg hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
-            >
-              Videos
             </Link>
             <a 
               href="/#contact" 
@@ -149,27 +160,6 @@ const Header = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
             </svg>
             Services
-          </Link>
-          <Link 
-            href="/blogs" 
-            onClick={closeMenu}
-            className="flex items-center gap-3 px-4 py-3 text-base font-semibold text-[#2b4c56] rounded-xl hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
-          >
-            <svg className="w-5 h-5 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-            </svg>
-            Blogs
-          </Link>
-          <Link 
-            href="/videos" 
-            onClick={closeMenu}
-            className="flex items-center gap-3 px-4 py-3 text-base font-semibold text-[#2b4c56] rounded-xl hover:text-[#0b6f66] hover:bg-[#0b6f66]/5 transition-all duration-200"
-          >
-            <svg className="w-5 h-5 text-[#0b6f66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Videos
           </Link>
           <div className="pt-2">
             <a 
