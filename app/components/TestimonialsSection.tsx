@@ -5,7 +5,6 @@ import {
   useEffect,
   useCallback,
   useRef,
-  type ReactNode,
   type TouchEvent,
 } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
@@ -107,109 +106,320 @@ function ImageLightbox({
   );
 }
 
-/** Responsive grid for clinical images: consistent tiles, contain fit, premium hover, lightbox. */
-function CaseImageMosaic({
+/**
+ * Single-stage slideshow (Before OR After).
+ *
+ *  - Fixed aspect-ratio stage so there is NO layout jump between frames or cases.
+ *  - One image at a time, cross-sliding with opacity + gentle horizontal motion.
+ *  - Auto-rotates through frames within the stage; resets when the case changes.
+ *  - Arrows + counter + thumbnail strip when >1 frame.
+ *  - Click the stage to open the lightbox.
+ */
+function StageCarousel({
   images,
   altPrefix,
   onImageClick,
+  variant,
+  parentPaused,
+  caseId,
 }: {
   images: string[];
   altPrefix: string;
   onImageClick: (src: string, alt: string) => void;
+  variant: "before" | "after";
+  parentPaused: boolean;
+  /** Stable id of the current case. Used to scope motion keys and reset index on case change. */
+  caseId: string;
 }) {
-  const n = images.length;
-  if (n === 0) {
+  const reduceMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
+  const [, setDirection] = useState(1);
+  // Track the last caseId via state so we can reset the internal index WHEN the case changes
+  // without writing to a ref or running an effect. This is the documented React pattern:
+  // https://react.dev/reference/react/useState#storing-information-from-previous-renders
+  const [lastCaseId, setLastCaseId] = useState(caseId);
+  const userPauseUntilRef = useRef(0);
+  const touchStartXRef = useRef<number | null>(null);
+
+  const STAGE_AUTO_MS = 3800;
+  const STAGE_USER_PAUSE_MS = 9000;
+
+  if (lastCaseId !== caseId) {
+    setLastCaseId(caseId);
+    setIndex(0);
+    setDirection(1);
+  }
+
+  const safeIndex = images.length > 0 ? Math.min(index, images.length - 1) : 0;
+
+  const bump = useCallback(() => {
+    userPauseUntilRef.current = Date.now() + STAGE_USER_PAUSE_MS;
+  }, []);
+
+  const goTo = useCallback(
+    (next: number, dir: 1 | -1) => {
+      setDirection(dir);
+      setIndex(next);
+    },
+    []
+  );
+
+  const goNext = useCallback(() => {
+    if (images.length <= 1) return;
+    goTo((safeIndex + 1) % images.length, 1);
+  }, [images.length, safeIndex, goTo]);
+
+  const goPrev = useCallback(() => {
+    if (images.length <= 1) return;
+    goTo(safeIndex === 0 ? images.length - 1 : safeIndex - 1, -1);
+  }, [images.length, safeIndex, goTo]);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const id = setInterval(() => {
+      if (parentPaused) return;
+      if (Date.now() < userPauseUntilRef.current) return;
+      setDirection(1);
+      setIndex((p) => (p + 1) % images.length);
+    }, STAGE_AUTO_MS);
+    return () => clearInterval(id);
+  }, [images.length, parentPaused]);
+
+  const onTouchStart = useCallback((e: TouchEvent) => {
+    touchStartXRef.current = e.changedTouches[0].clientX;
+  }, []);
+  const onTouchEnd = useCallback(
+    (e: TouchEvent) => {
+      const start = touchStartXRef.current;
+      touchStartXRef.current = null;
+      if (start == null || images.length <= 1) return;
+      const dx = e.changedTouches[0].clientX - start;
+      const THRESH = 36;
+      if (dx > THRESH) {
+        bump();
+        goPrev();
+      } else if (dx < -THRESH) {
+        bump();
+        goNext();
+      }
+    },
+    [bump, goNext, goPrev, images.length]
+  );
+
+  if (images.length === 0) {
     return (
       <div
-        className="flex min-h-[168px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200/90 bg-gradient-to-b from-gray-50/90 to-gray-50/40 px-4 text-center"
+        className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-gray-200/90 bg-gradient-to-b from-gray-50/90 to-gray-50/40 px-4 text-center"
+        style={{ aspectRatio: "4 / 3" }}
         aria-hidden
       >
-        <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">No image</span>
-        <span className="max-w-[200px] text-[11px] leading-snug text-gray-400">Add a study to this stage to show the comparison.</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+          No image
+        </span>
+        <span className="max-w-[220px] text-[11px] leading-snug text-gray-400">
+          Add a study to this stage to show the comparison.
+        </span>
       </div>
     );
   }
-  const gridClass =
-    n === 1
-      ? "grid-cols-1"
-      : n === 2
-        ? "grid-cols-1 sm:grid-cols-2"
-        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+
+  const src = images[safeIndex];
+  const alt = `${altPrefix} ${safeIndex + 1}`;
+  // Longer, gentler crossfade; pure opacity + very subtle scale (no horizontal slide)
+  // — this is what gives the "photo fade" effect used in premium galleries.
+  const duration = reduceMotion ? 0.01 : 0.85;
+  const softEase = [0.4, 0, 0.2, 1] as const;
+
+  const accent =
+    variant === "before"
+      ? "bg-gray-900/85 text-white ring-1 ring-black/20"
+      : "bg-[#0b6f66] text-white ring-1 ring-[#0b6f66]/30";
 
   return (
-    <div className={`grid gap-3 sm:gap-3.5 ${gridClass}`}>
-      {images.map((src, idx) => {
-        const alt = `${altPrefix} ${idx + 1}`;
-        return (
-          <button
-            key={`${src}-${idx}`}
+    <div className="flex w-full min-w-0 flex-col gap-3">
+      {/*
+       * Locked-size stage: aspect-ratio fixes the ratio, and the container itself
+       * is capped with clamp() so the outer card never grows or shrinks between cases
+       * regardless of the image aspect ratio inside it.
+       */}
+      <div
+        className="group relative w-full self-center overflow-hidden rounded-2xl border border-gray-200/90 bg-gradient-to-b from-white to-gray-50/40 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_6px_18px_rgba(15,23,42,0.06)] ring-1 ring-black/[0.03]"
+        style={{
+          aspectRatio: "4 / 3",
+          maxWidth: "min(100%, 560px)",
+          maxHeight: "clamp(240px, 42vh, 420px)",
+        }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        role="group"
+        aria-roledescription="carousel"
+        aria-label={`${altPrefix} images`}
+      >
+        <AnimatePresence initial={false} mode="sync">
+          <motion.button
+            key={`${caseId}-${variant}-${safeIndex}`}
             type="button"
             onClick={() => onImageClick(src, alt)}
-            className="group relative flex min-h-[200px] cursor-zoom-in items-center justify-center overflow-hidden rounded-2xl border border-gray-200/90 bg-white p-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_4px_12px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-[#0b6f66]/28 hover:shadow-[0_8px_24px_-4px_rgba(11,107,102,0.18)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b6f66]/35 focus-visible:ring-offset-2 sm:min-h-[220px] md:min-h-[240px] md:p-3"
+            initial={{ opacity: 0, scale: 1.025, filter: "blur(4px)" }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              filter: "blur(0px)",
+              transition: { duration, ease: softEase },
+            }}
+            exit={{
+              opacity: 0,
+              scale: 0.985,
+              filter: "blur(3px)",
+              transition: { duration: duration * 0.82, ease: softEase },
+            }}
+            className="absolute inset-0 flex cursor-zoom-in items-center justify-center bg-transparent p-3 will-change-[transform,opacity,filter] [backface-visibility:hidden] [transform:translateZ(0)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b6f66]/40 sm:p-4"
+            aria-label={`Open ${alt} in lightbox`}
           >
-            {n > 1 ? (
-              <span className="absolute left-2.5 top-2.5 z-[1] flex h-6 min-w-6 items-center justify-center rounded-lg bg-gray-900/[0.06] px-1.5 text-[10px] font-bold tabular-nums text-gray-600 ring-1 ring-black/[0.04] backdrop-blur-sm">
-                {idx + 1}
-              </span>
-            ) : null}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-900/[0.03] to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={src}
               alt={alt}
-              className="relative z-0 max-h-[min(38vh,400px)] w-full object-contain transition duration-500 ease-out group-hover:scale-[1.015] md:max-h-[min(40vh,420px)]"
-              loading="lazy"
+              className="max-h-full max-w-full object-contain drop-shadow-sm transition duration-500 ease-out group-hover:scale-[1.01]"
               decoding="async"
+              loading="eager"
+              draggable={false}
             />
-            <span className="pointer-events-none absolute bottom-2.5 right-2.5 z-[1] flex items-center gap-1 rounded-lg bg-[#0b6f66] px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white opacity-0 shadow-lg shadow-[#0b6f66]/20 transition duration-300 group-hover:opacity-100">
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-              </svg>
-              View
+          </motion.button>
+        </AnimatePresence>
+
+        {images.length > 1 ? (
+          <>
+            <span
+              className={`pointer-events-none absolute right-3 top-3 z-10 inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em] shadow-sm ${accent}`}
+            >
+              {safeIndex + 1} / {images.length}
             </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
 
-/** Only the image mosaics cross-fade (overlapping, no “blank” wait). Header stays stable. */
-function AnimatedMosaicSlot({
-  animKey,
-  children,
-  className = "",
-}: {
-  animKey: string;
-  children: ReactNode;
-  className?: string;
-}) {
-  const reduceMotion = useReducedMotion();
-  const duration = reduceMotion ? 0.01 : 0.5;
-  const easeInOut = [0.33, 1, 0.68, 1] as const;
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                bump();
+                goPrev();
+              }}
+              aria-label="Previous image"
+              className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 touch-manipulation items-center justify-center rounded-full border border-gray-200/90 bg-white/95 text-gray-700 shadow-md backdrop-blur-sm transition duration-200 hover:scale-105 hover:border-[#0b6f66]/35 hover:text-[#0b6f66] active:scale-95 sm:left-3 sm:h-10 sm:w-10"
+            >
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                bump();
+                goNext();
+              }}
+              aria-label="Next image"
+              className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 touch-manipulation items-center justify-center rounded-full border border-gray-200/90 bg-white/95 text-gray-700 shadow-md backdrop-blur-sm transition duration-200 hover:scale-105 hover:border-[#0b6f66]/35 hover:text-[#0b6f66] active:scale-95 sm:right-3 sm:h-10 sm:w-10"
+            >
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
 
-  return (
-    <div
-      className={`grid min-w-0 [grid-template-areas:'stack'] place-items-stretch ${className}`}
-    >
-      <AnimatePresence initial={false} mode="sync">
-        <motion.div
-          key={animKey}
-          style={{ gridArea: "stack" }}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: 1,
-            transition: { duration, ease: easeInOut },
-          }}
-          exit={{
-            opacity: 0,
-            transition: { duration: duration * 0.85, ease: easeInOut },
-          }}
-          className="col-start-1 row-start-1 w-full min-w-0 will-change-[opacity] [backface-visibility:hidden] [transform:translateZ(0)]"
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-2 z-10 flex justify-center gap-1.5"
+              aria-hidden
+            >
+              {images.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === safeIndex
+                      ? variant === "after"
+                        ? "w-5 bg-[#0b6f66]"
+                        : "w-5 bg-gray-900/80"
+                      : "w-1.5 bg-gray-400/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+
+      {/*
+       * Thumbnail strip row: ALWAYS present at the same height (even when there is
+       * only one frame) so panels never change size between cases. The inner list
+       * is empty when count <= 1, just acting as a consistent spacer.
+       */}
+      <div
+        className="flex h-16 items-center sm:h-[76px]"
+        aria-hidden={images.length <= 1}
+      >
+        {images.length > 1 ? (
+          <div
+            className="-mx-1 flex w-full snap-x snap-mandatory gap-2 overflow-x-auto px-1 pb-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:thin]"
+            role="tablist"
+            aria-label={`${altPrefix} frames`}
+          >
+            {images.map((thumb, i) => {
+              const active = i === safeIndex;
+              return (
+                <button
+                  key={`${thumb}-${i}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => {
+                    bump();
+                    goTo(i, i > safeIndex ? 1 : -1);
+                  }}
+                  className={`relative flex h-14 w-16 shrink-0 snap-start items-center justify-center overflow-hidden rounded-xl border bg-white p-1 transition duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b6f66]/40 sm:h-[68px] sm:w-20 ${
+                    active
+                      ? variant === "after"
+                        ? "border-[#0b6f66] ring-2 ring-[#0b6f66]/35 shadow-md"
+                        : "border-gray-900/70 ring-2 ring-gray-900/25 shadow-md"
+                      : "border-gray-200 opacity-70 hover:opacity-100"
+                  }`}
+                  aria-label={`Go to frame ${i + 1}`}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={thumb}
+                    alt=""
+                    className="h-full w-full object-contain"
+                    decoding="async"
+                    loading="eager"
+                    draggable={false}
+                  />
+                  <span className="absolute bottom-0.5 right-0.5 rounded-md bg-gray-900/75 px-1 text-[9px] font-bold text-white">
+                    {i + 1}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -450,14 +660,38 @@ const TestimonialsSection = () => {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const [carouselPaused, setCarouselPaused] = useState(false);
 
+  // Preload every transformation image once so crossfades never wait on network.
+  useEffect(() => {
+    const urls = new Set<string>();
+    for (const t of transformations) {
+      (t.beforeImages ?? []).forEach((s) => urls.add(s));
+      (t.afterImages ?? []).forEach((s) => urls.add(s));
+      if (t.beforeImage) urls.add(t.beforeImage);
+      if (t.afterImage) urls.add(t.afterImage);
+      if (t.combinedImage) urls.add(t.combinedImage);
+    }
+    const loaders: HTMLImageElement[] = [];
+    urls.forEach((src) => {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = src;
+      loaders.push(img);
+    });
+    return () => {
+      loaders.length = 0;
+    };
+    // transformations is defined in this component and is effectively static; preload once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const touchStartXRef = useRef<number | null>(null);
   /** After swipe / chip / arrow, hold auto-advance until this timestamp (ms). */
   const userPauseUntilRef = useRef(0);
   const caseStripRef = useRef<HTMLDivElement>(null);
 
-  const MOBILE_AUTO_MS = 7500;
-  const DESKTOP_AUTO_MS = 6500;
-  const USER_PAUSE_MS = 12000;
+  const MOBILE_AUTO_MS = 5000;
+  const DESKTOP_AUTO_MS = 5000;
+  const USER_PAUSE_MS = 10000;
 
   /** Pause auto-advance for a beat after manual navigation (works with hover pause on desktop). */
   const bumpUserInteractionPause = useCallback(() => {
@@ -737,52 +971,49 @@ const TestimonialsSection = () => {
                     >
                       <div className="border-t border-gray-100/80 bg-gradient-to-b from-[#0b6f66]/[0.04] via-gray-50/30 to-white p-4 sm:p-6">
                         {showLabeledSplit ? (
-                          <div className="flex min-h-[min(48vh,520px)] w-full flex-col gap-6 md:min-h-[min(50vh,560px)] xl:flex-row xl:items-stretch xl:gap-5">
-                            <div className="flex min-h-0 min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
+                          <div className="flex w-full flex-col gap-6 xl:flex-row xl:items-stretch xl:gap-5">
+                            <div className="flex min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
                               {stageHeader(
                                 t.beforeCaption?.trim() || "Before",
                                 beforeImgs.length,
                                 "before"
                               )}
-                              <AnimatedMosaicSlot
-                                animKey={`${safeSlideIndex}-${t.id}-before`}
-                                className="flex min-h-[200px] flex-1 flex-col justify-center md:min-h-[240px]"
-                              >
-                                <CaseImageMosaic
-                                  images={beforeImgs}
-                                  altPrefix={`${t.title} — before`}
-                                  onImageClick={openLightbox}
-                                />
-                              </AnimatedMosaicSlot>
+                              <StageCarousel
+                                images={beforeImgs}
+                                altPrefix={`${t.title} — before`}
+                                onImageClick={openLightbox}
+                                variant="before"
+                                parentPaused={carouselPaused || Boolean(lightbox)}
+                                caseId={`${t.id}`}
+                              />
                             </div>
                             <BeforeAfterConnector />
-                            <div className="flex min-h-0 min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
+                            <div className="flex min-w-0 flex-1 flex-col rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] ring-1 ring-gray-100 sm:p-5">
                               {stageHeader(
                                 t.afterCaption?.trim() || "After",
                                 afterImgs.length,
                                 "after"
                               )}
-                              <AnimatedMosaicSlot
-                                animKey={`${safeSlideIndex}-${t.id}-after`}
-                                className="flex min-h-[200px] flex-1 flex-col justify-center md:min-h-[240px]"
-                              >
-                                <CaseImageMosaic
-                                  images={afterImgs}
-                                  altPrefix={`${t.title} — after`}
-                                  onImageClick={openLightbox}
-                                />
-                              </AnimatedMosaicSlot>
+                              <StageCarousel
+                                images={afterImgs}
+                                altPrefix={`${t.title} — after`}
+                                onImageClick={openLightbox}
+                                variant="after"
+                                parentPaused={carouselPaused || Boolean(lightbox)}
+                                caseId={`${t.id}`}
+                              />
                             </div>
                           </div>
                         ) : singleSrc ? (
-                          <div className="flex min-h-[min(48vh,520px)] flex-col justify-center overflow-hidden rounded-2xl border border-white/80 bg-white/90 p-4 ring-1 ring-gray-100 sm:min-h-[min(50vh,560px)] sm:p-6">
-                            <AnimatedMosaicSlot animKey={`${safeSlideIndex}-${t.id}-single`}>
-                              <CaseImageMosaic
-                                images={[singleSrc]}
-                                altPrefix={t.title}
-                                onImageClick={openLightbox}
-                              />
-                            </AnimatedMosaicSlot>
+                          <div className="flex flex-col justify-center overflow-hidden rounded-2xl border border-white/80 bg-white/90 p-4 ring-1 ring-gray-100 sm:p-6">
+                            <StageCarousel
+                              images={[singleSrc]}
+                              altPrefix={t.title}
+                              onImageClick={openLightbox}
+                              variant="after"
+                              parentPaused={carouselPaused || Boolean(lightbox)}
+                              caseId={`${t.id}`}
+                            />
                           </div>
                         ) : (
                           <div
