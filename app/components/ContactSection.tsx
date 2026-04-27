@@ -1,5 +1,12 @@
 import Image from "next/image";
 
+const RECOVER_MAP_QUERY =
+  "Recover Clinic, 34, 50 feet road, NGEF Layout, Postal Colony, Sanjayanagara, Bengaluru, Karnataka 560094";
+const RECOVER_MAP_URL = "https://maps.app.goo.gl/2bEZ7gLGBP9q87QD6?g_st=ic";
+const SPARSH_MAP_URL = "https://maps.app.goo.gl/KGDZqCbcmPLb1CNe6?g_st=ic";
+const SPARSH_MAP_EMBED_QUERY =
+  "SPARSH Hospital, DivyaSree Avance, Hennur Bagalur Main Rd, Bengaluru, Karnataka 560043";
+
 const ContactSection = () => {
   return (
     <section id="contact" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-10 md:min-h-screen md:py-6 lg:py-8 overflow-hidden">
@@ -97,15 +104,15 @@ const ContactSection = () => {
                   </a>
                   <div className="mt-2.5 rounded-lg overflow-hidden border border-white/25 aspect-[16/7]">
                     <iframe
-                      title="Recover Clinic Kaggadasapura map"
-                      src="https://maps.google.com/maps?q=Recover%20Clinic%2C%20Tarun%20Tower%2C%20Kaggadasapura%20Main%20Rd%2C%20Bengaluru%2C%20Karnataka%20560093&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                      title="Recover Clinic Sanjayanagara map"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(RECOVER_MAP_QUERY)}&z=16&ie=UTF8&iwloc=&output=embed`}
                       className="w-full h-full"
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                     />
                   </div>
                   <a
-                    href="https://maps.app.goo.gl/5LWGnFr7ESjP2fWn9"
+                    href={RECOVER_MAP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#d5a028] px-4 py-2 text-xs md:text-sm font-bold text-[#0b443f] hover:bg-[#f4c430] transition-all"
@@ -141,26 +148,30 @@ const ContactSection = () => {
                     <span className="h-4 w-px bg-white/25"></span>
                     <span className="text-xs md:text-sm font-semibold text-white">9:00 AM - 4:00 PM</span>
                   </div>
-                  <a
-                    href="tel:08061222000"
-                    className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] md:text-xs font-semibold text-white hover:bg-white/20 transition-all"
-                  >
+                  <div className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-[11px] md:text-xs font-semibold text-white">
                     <svg className="w-3.5 h-3.5 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    SPARSH: 080 6122 2000
-                  </a>
+                    <span>SPARSH:</span>
+                    <a href="tel:+918277830777" className="hover:text-[#f4c430] transition-colors">
+                      +91-8277830777
+                    </a>
+                    <span>,</span>
+                    <a href="tel:+917282029272" className="hover:text-[#f4c430] transition-colors">
+                      +91-7282029272
+                    </a>
+                  </div>
                   <div className="mt-2.5 rounded-lg overflow-hidden border border-white/25 aspect-[16/7]">
                     <iframe
                       title="SPARSH Hospital Hennur map"
-                      src="https://maps.google.com/maps?q=SPARSH%20Hospital%2C%20DivyaSree%20Avance%2C%20Hennur%20Bagalur%20Main%20Rd%2C%20Bengaluru%2C%20Karnataka%20560043&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(SPARSH_MAP_EMBED_QUERY)}&z=16&ie=UTF8&iwloc=&output=embed`}
                       className="w-full h-full"
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                     />
                   </div>
                   <a
-                    href="https://maps.app.goo.gl/GXU8ygsNHQebqmkz8"
+                    href={SPARSH_MAP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2.5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#d5a028] px-4 py-2 text-xs md:text-sm font-bold text-[#0b443f] hover:bg-[#f4c430] transition-all"
