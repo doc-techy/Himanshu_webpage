@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local drafts (too large or not for production)
+website draft.pptx
+public/trial.rtf
+public/images/from-ppt-draft/
+public/images/1000197663.jpg
