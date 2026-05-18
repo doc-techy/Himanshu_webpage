@@ -10,7 +10,7 @@ type ServiceIconProps = {
 };
 
 const DEFAULT_IMAGE_SCALE = 1.1;
-export const ILIZAROV_IMAGE_SCALE = 1.6;
+export const ILIZAROV_IMAGE_SCALE = 1.2;
 
 const resolveImageScale = (iconSrc?: string, imageScale?: number) => {
   if (imageScale !== undefined) return imageScale;
