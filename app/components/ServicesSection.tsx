@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ServiceIcon from "./ServiceIcon";
+import ServiceIcon, { ILIZAROV_IMAGE_SCALE } from "./ServiceIcon";
 
 const ServicesSection = () => {
   // Icon positions in the 3x3 grid (row, col) - each icon takes 33.33% of the image
@@ -21,6 +21,7 @@ const ServicesSection = () => {
       title: "Ilizarov Technique",
       description: "Specialized external fixation method for bone lengthening, deformity correction, and complex fractures.",
       iconSrc: "/images/ilizarov-technique-icon.png",
+      imageScale: ILIZAROV_IMAGE_SCALE,
     },
     {
       id: "robotic-surgery",
@@ -76,6 +77,7 @@ const ServicesSection = () => {
                 title={service.title}
                 iconSrc={"iconSrc" in service ? service.iconSrc : undefined}
                 iconPosition={"iconPosition" in service ? service.iconPosition : undefined}
+                imageScale={"imageScale" in service ? service.imageScale : undefined}
                 className="mb-3 mx-auto group-hover:scale-110 transition-transform"
               />
 

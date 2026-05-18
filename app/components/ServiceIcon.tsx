@@ -4,8 +4,18 @@ type ServiceIconProps = {
   title: string;
   iconSrc?: string;
   iconPosition?: string;
+  imageScale?: number;
   size?: "sm" | "lg";
   className?: string;
+};
+
+const DEFAULT_IMAGE_SCALE = 1.1;
+export const ILIZAROV_IMAGE_SCALE = 1.6;
+
+const resolveImageScale = (iconSrc?: string, imageScale?: number) => {
+  if (imageScale !== undefined) return imageScale;
+  if (iconSrc?.includes("ilizarov-technique-icon")) return ILIZAROV_IMAGE_SCALE;
+  return DEFAULT_IMAGE_SCALE;
 };
 
 const boxSizeClasses = {
@@ -22,10 +32,19 @@ const ServiceIcon = ({
   title,
   iconSrc,
   iconPosition,
+  imageScale,
   size = "sm",
   className = "",
 }: ServiceIconProps) => {
-  const padding = iconSrc ? paddingClasses[size].image : paddingClasses[size].sprite;
+  const resolvedScale = resolveImageScale(iconSrc, imageScale);
+  const padding =
+    iconSrc && resolvedScale > DEFAULT_IMAGE_SCALE
+      ? size === "lg"
+        ? "p-1.5"
+        : "p-1.5"
+      : iconSrc
+        ? paddingClasses[size].image
+        : paddingClasses[size].sprite;
 
   return (
     <div
@@ -37,7 +56,8 @@ const ServiceIcon = ({
           alt={title}
           width={96}
           height={96}
-          className="h-full w-full object-contain scale-[1.1]"
+          className="h-full w-full object-contain"
+          style={{ transform: `scale(${resolvedScale})` }}
         />
       ) : (
         <div

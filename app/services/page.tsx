@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
-import ServiceIcon from "../components/ServiceIcon";
+import ServiceIcon, { ILIZAROV_IMAGE_SCALE } from "../components/ServiceIcon";
 import { PHONE_SPARSH_DISPLAY, PHONE_SPARSH_TEL, WHATSAPP_URL } from "../constants/phones";
 
 export default function ServicesPage() {
@@ -36,6 +36,7 @@ export default function ServicesPage() {
       id: "ilizarov",
       title: "Ilizarov Technique",
       iconSrc: "/images/ilizarov-technique-icon.png",
+      imageScale: ILIZAROV_IMAGE_SCALE,
       description: "Specialized Ilizarov external fixation technique for correcting complex limb deformities and bone defects.",
       offerings: [
         "Limb lengthening procedures",
@@ -137,6 +138,7 @@ export default function ServicesPage() {
                       title={service.title}
                       iconSrc={"iconSrc" in service ? service.iconSrc : undefined}
                       iconPosition={"iconPosition" in service ? service.iconPosition : undefined}
+                      imageScale={"imageScale" in service ? service.imageScale : undefined}
                       size="lg"
                       className="mb-3"
                     />
