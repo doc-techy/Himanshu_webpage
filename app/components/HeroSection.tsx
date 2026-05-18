@@ -1,5 +1,7 @@
 "use client";
 
+import { WHATSAPP_URL } from "../constants/phones";
+
 const HeroSection = () => {
   return (
     <section id="home" className="relative w-full min-h-[100dvh] bg-[#1e2626] overflow-hidden flex items-center">
@@ -101,7 +103,9 @@ const HeroSection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-3 md:gap-4 items-stretch sm:items-center justify-center w-full sm:w-auto">
             <a
-              href="tel:+917282029272"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative inline-flex items-center justify-center px-6 py-3.5 sm:px-7 sm:py-3.5 md:px-10 md:py-4 text-sm sm:text-sm md:text-base font-bold text-[#0a0a0a] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-0.5 whitespace-nowrap"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#d5a028] via-[#f4c430] to-[#d5a028] transition-all"></div>

@@ -43,7 +43,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="relative w-full min-h-screen lg:h-screen bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-12 md:py-16 lg:py-0 overflow-hidden flex items-center">
+    <section id="services" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-12 md:py-16 lg:min-h-screen lg:h-screen lg:py-0 overflow-hidden lg:flex lg:items-center">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-20 w-72 h-72 bg-[#d5a028]/10 rounded-full blur-3xl"></div>
@@ -53,23 +53,23 @@ const ServicesSection = () => {
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
+        <div className="text-center mb-4 md:mb-6">
           <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl mb-3">
             Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d5a028] to-[#f4c430]">Key Services</span>
           </h2>
           <div className="w-16 md:w-20 h-1 bg-[#d5a028] mx-auto mb-4"></div>
-          <p className="text-sm md:text-base text-white/80 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white/90 max-w-2xl mx-auto font-medium">
             Comprehensive orthopaedic care with cutting-edge technology and personalized treatment
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-4">
           {services.map((service, index) => (
             <Link
               key={index}
               href={`/services#${service.id}`}
-              className="group relative rounded-lg lg:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 md:p-4 hover:bg-white/15 hover:border-[#d5a028]/50 hover:-translate-y-1 transition-all duration-300 cursor-pointer text-center"
+              className="group relative rounded-xl bg-white/15 backdrop-blur-sm border border-white/30 p-4 sm:p-4 md:p-5 hover:bg-white/20 hover:border-[#d5a028]/50 hover:-translate-y-1 transition-all duration-300 cursor-pointer text-center shadow-sm"
             >
               {/* Icon */}
               <ServiceIcon
@@ -80,12 +80,12 @@ const ServicesSection = () => {
               />
 
               {/* Title */}
-              <h3 className="text-xs sm:text-sm md:text-base font-bold text-white mb-1.5 group-hover:text-[#f4c430] transition-colors">
+              <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-2 leading-snug group-hover:text-[#f4c430] transition-colors [text-shadow:0_1px_2px_rgba(0,0,0,0.35)]">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-[10px] sm:text-xs text-white/70 leading-relaxed line-clamp-2">
+              <p className="text-xs sm:text-sm text-white/95 font-medium leading-relaxed line-clamp-3 sm:line-clamp-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.25)]">
                 {service.description}
               </p>
 
@@ -107,7 +107,7 @@ const ServicesSection = () => {
         <div className="text-center mt-8 md:mt-10">
           <Link 
             href="/services"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#d5a028] text-white text-sm md:text-base font-semibold rounded-lg hover:bg-[#c08f1f] shadow-lg hover:shadow-xl transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#d5a028] text-white text-base md:text-lg font-bold rounded-lg hover:bg-[#c08f1f] shadow-lg hover:shadow-xl transition-all"
           >
             View All Services
             <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

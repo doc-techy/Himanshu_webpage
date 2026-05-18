@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+const HEADER_LOGO_SRC = "/images/recover-clinic-logo.png";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -54,41 +56,17 @@ const Header = () => {
       {/* Bottom gradient line */}
       <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#0b6f66]"></div>
       
-      <div className="mx-auto w-full max-w-7xl px-3 py-2 sm:px-4 sm:py-3 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-3 py-0.5 sm:px-4 sm:py-1 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo: GIF + text (same copy as before full-bleed PNG) */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover:opacity-90 transition-opacity">
+          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity min-w-0 max-w-[62%] sm:max-w-none">
             <Image
-              src="/images/logo.gif"
-              alt="Recover Clinic Logo"
-              width={80}
-              height={80}
-              className="h-14 w-14 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 flex-shrink-0 object-contain"
+              src={HEADER_LOGO_SRC}
+              alt="Recover Clinic — Orthopaedics & Limb Reconstruction"
+              width={360}
+              height={90}
+              className="h-12 w-auto sm:h-14 md:h-[3.75rem] lg:h-16 object-contain object-left"
               priority
-              unoptimized
             />
-            <div className="flex flex-col justify-center min-w-0">
-              <h1
-                className="font-[var(--font-oswald)] text-[20px] sm:text-lg md:text-[22px] lg:text-[26px] leading-none uppercase font-bold tracking-wider"
-                style={{ color: "#1a9e94" }}
-              >
-                RECOVER CLINIC
-              </h1>
-              <p
-                className="font-[var(--font-open-sans)] text-[7px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-snug mt-0.5 font-semibold"
-                style={{ color: "#c9a227" }}
-              >
-                <span className="md:hidden">
-                  Orthopaedics | Limb Reconstruction | Joint Replacement
-                  <br />
-                  Arthroscopy &amp; Sports medicine
-                </span>
-                <span className="hidden md:block">
-                  Orthopaedics | Limb Reconstruction
-                  <br /> Joint Replacement | Arthroscopy &amp; Sports medicine
-                </span>
-              </p>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -122,7 +100,7 @@ const Header = () => {
           {/* Mobile Hamburger Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden relative w-12 h-12 flex items-center justify-center rounded-lg bg-[#0b6f66]/5 hover:bg-[#0b6f66]/10 transition-colors"
+            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg bg-[#0b6f66]/5 hover:bg-[#0b6f66]/10 transition-colors shrink-0"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
@@ -152,7 +130,7 @@ const Header = () => {
         className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ top: '72px' }}
+        style={{ top: "var(--header-height, 64px)" }}
         onClick={closeMenu}
       />
 

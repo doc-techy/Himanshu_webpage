@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Oswald, Open_Sans } from "next/font/google";
 import "./globals.css";
+import { WHATSAPP_URL } from "./constants/phones";
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -45,7 +46,7 @@ export default function RootLayout({
         <div className="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 z-50 flex-col gap-0 rounded-r-xl overflow-hidden shadow-lg shadow-black/20">
           {/* WhatsApp */}
           <a 
-            href="https://wa.me/917282029272" 
+            href={WHATSAPP_URL} 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center w-11 h-11 bg-[#0b6f66] text-white hover:w-14 hover:bg-[#d5a028] transition-all duration-300"
@@ -107,7 +108,7 @@ export default function RootLayout({
 
         {/* Floating WhatsApp Button - Mobile Only */}
         <a 
-          href="https://wa.me/917282029272" 
+          href={WHATSAPP_URL}
           target="_blank" 
           rel="noopener noreferrer"
           className="md:hidden fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-[#25D366] text-white shadow-lg flex items-center justify-center hover:bg-[#20BA5C] hover:scale-110 transition-all duration-300 active:scale-95"

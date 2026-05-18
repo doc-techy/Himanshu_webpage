@@ -2,6 +2,7 @@ import Link from "next/link";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import ServiceIcon from "../components/ServiceIcon";
+import { PHONE_SPARSH_DISPLAY, PHONE_SPARSH_TEL, WHATSAPP_URL } from "../constants/phones";
 
 export default function ServicesPage() {
   const services = [
@@ -196,16 +197,18 @@ export default function ServicesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="/#contact"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-lg bg-[#d5a028] px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:bg-[#c08f1f]"
             >
               Book an Appointment
             </a>
             <a
-              href="tel:+917282029272"
+              href={`tel:${PHONE_SPARSH_TEL}`}
               className="inline-flex items-center justify-center rounded-lg border-2 border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/20"
             >
-              Call: +91 72820 29272
+              Call: {PHONE_SPARSH_DISPLAY}
             </a>
           </div>
         </div>

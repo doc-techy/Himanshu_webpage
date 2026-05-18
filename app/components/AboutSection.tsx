@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const DR_PORTRAIT_SRC = "/images/dr-himanshu-singh.png";
+
 const AboutSection = () => {
   return (
     <section id="about" className="relative w-full bg-white py-8 md:py-12 lg:py-16 flex flex-col overflow-hidden scroll-mt-24">
@@ -10,13 +12,17 @@ const AboutSection = () => {
       </div>
 
       {/* Mobile Full-Width Image - Only visible on mobile/tablet */}
-      <div className="lg:hidden relative w-full h-[460px] sm:h-[540px] md:h-[600px]">
-        <Image
-          src="/images/WhatsApp Image 2026-01-14 at 14.32.58 (2).jpeg"
-          alt="Dr. Himanshu Singh Portrait"
-          fill
-          className="object-cover object-top"
-        />
+      <div className="lg:hidden relative w-full h-[420px] sm:h-[480px] md:h-[520px] bg-neutral-100">
+        <div className="absolute inset-3 sm:inset-5">
+          <Image
+            src={DR_PORTRAIT_SRC}
+            alt="Dr. Himanshu Singh Portrait"
+            fill
+            className="object-contain object-center"
+            priority
+            sizes="100vw"
+          />
+        </div>
         <div className="absolute bottom-0 left-0 right-0 h-[20%] bg-gradient-to-t from-white to-transparent"></div>
       </div>
 
@@ -33,14 +39,18 @@ const AboutSection = () => {
         <div className="grid gap-6 md:gap-8 lg:gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
           {/* Desktop Image - Only visible on desktop */}
           <div className="hidden lg:flex flex-col justify-start">
-            <div className="relative lg:w-[410px] lg:h-[540px] xl:w-[460px] xl:h-[600px] overflow-hidden rounded-2xl shadow-2xl">
-              <Image
-                src="/images/WhatsApp Image 2026-01-14 at 14.32.58 (2).jpeg"
-                alt="Dr. Himanshu Singh Portrait"
-                fill
-                className="object-cover object-top"
-              />
-              <div className="absolute inset-0 rounded-2xl ring-4 ring-[#0b6f66]/20"></div>
+            <div className="relative lg:w-[410px] lg:h-[540px] xl:w-[460px] xl:h-[600px] overflow-hidden rounded-2xl shadow-2xl bg-neutral-100">
+              <div className="absolute inset-4">
+                <Image
+                  src={DR_PORTRAIT_SRC}
+                  alt="Dr. Himanshu Singh Portrait"
+                  fill
+                  className="object-contain object-center"
+                  priority
+                  sizes="(min-width: 1024px) 460px, 0px"
+                />
+              </div>
+              <div className="absolute inset-0 rounded-2xl ring-4 ring-[#0b6f66]/20 pointer-events-none"></div>
             </div>
           </div>
 
