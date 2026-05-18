@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
+import ServiceIcon from "../components/ServiceIcon";
 
 export default function ServicesPage() {
   const services = [
@@ -20,7 +21,7 @@ export default function ServicesPage() {
     {
       id: "limb-reconstruction",
       title: "Limb Reconstruction",
-      iconPosition: "50% 0%", // top-middle: bone fracture
+      iconSrc: "/images/limb-reconstruction-icon.png",
       description: "Advanced techniques for restoring limb function and structure using modern surgical methods.",
       offerings: [
         "Complex limb salvage procedures",
@@ -33,7 +34,7 @@ export default function ServicesPage() {
     {
       id: "ilizarov",
       title: "Ilizarov Technique",
-      iconPosition: "0% 50%", // middle-left: ilizarov frame
+      iconSrc: "/images/ilizarov-technique-icon.png",
       description: "Specialized Ilizarov external fixation technique for correcting complex limb deformities and bone defects.",
       offerings: [
         "Limb lengthening procedures",
@@ -46,7 +47,7 @@ export default function ServicesPage() {
     {
       id: "robotic-surgery",
       title: "Robotic Joint Replacement",
-      iconPosition: "100% 0%", // top-right: x-ray monitor
+      iconSrc: "/images/robotic-joint-replacement-icon.png",
       description: "Precision robotic-assisted joint replacement surgery for optimal alignment and faster recovery.",
       offerings: [
         "Robotic knee replacement",
@@ -59,7 +60,7 @@ export default function ServicesPage() {
     {
       id: "arthroscopy",
       title: "Arthroscopy & Sports Medicine",
-      iconPosition: "50% 50%", // middle-center: knee arthroscopy
+      iconSrc: "/images/arthroscopy-sports-medicine-icon.png",
       description: "Minimally invasive arthroscopic procedures and comprehensive sports injury management.",
       offerings: [
         "Knee arthroscopy (ACL, meniscus)",
@@ -131,16 +132,13 @@ export default function ServicesPage() {
                 <div className="flex flex-col md:flex-row">
                   {/* Left - Icon & Title */}
                   <div className="bg-[#d5a028]/20 p-4 md:p-6 md:w-1/3 flex flex-col items-center justify-center text-center">
-                    <div className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 mb-3 overflow-hidden">
-                      <div 
-                        className="w-full h-full bg-no-repeat"
-                        style={{
-                          backgroundImage: "url('/images/icons.jpeg')",
-                          backgroundSize: "300%",
-                          backgroundPosition: service.iconPosition,
-                        }}
-                      />
-                    </div>
+                    <ServiceIcon
+                      title={service.title}
+                      iconSrc={"iconSrc" in service ? service.iconSrc : undefined}
+                      iconPosition={"iconPosition" in service ? service.iconPosition : undefined}
+                      size="lg"
+                      className="mb-3"
+                    />
                     <h2 className="text-lg md:text-xl font-bold text-white">{service.title}</h2>
                   </div>
                   

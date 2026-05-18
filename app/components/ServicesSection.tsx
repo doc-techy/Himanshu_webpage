@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import ServiceIcon from "./ServiceIcon";
 
 const ServicesSection = () => {
   // Icon positions in the 3x3 grid (row, col) - each icon takes 33.33% of the image
@@ -14,25 +14,25 @@ const ServicesSection = () => {
       id: "limb-reconstruction",
       title: "Limb Reconstruction",
       description: "Advanced surgical techniques for restoring limb function, treating deformities, and complex trauma cases.",
-      iconPosition: "50% 0%", // top-middle: bone fracture
+      iconSrc: "/images/limb-reconstruction-icon.png",
     },
     {
       id: "ilizarov",
       title: "Ilizarov Technique",
       description: "Specialized external fixation method for bone lengthening, deformity correction, and complex fractures.",
-      iconPosition: "0% 50%", // middle-left: ilizarov frame
+      iconSrc: "/images/ilizarov-technique-icon.png",
     },
     {
       id: "robotic-surgery",
       title: "Robotic Joint Replacement",
       description: "Precision robotic-assisted surgery for hip and knee replacements with optimal alignment and faster recovery.",
-      iconPosition: "100% 0%", // top-right: x-ray monitor
+      iconSrc: "/images/robotic-joint-replacement-icon.png",
     },
     {
       id: "arthroscopy",
       title: "Arthroscopy & Sports Medicine",
       description: "Minimally invasive joint surgery and comprehensive sports injury treatment for faster return to activity.",
-      iconPosition: "50% 50%", // middle-center: knee arthroscopy
+      iconSrc: "/images/arthroscopy-sports-medicine-icon.png",
     },
     {
       id: "fracture-spine",
@@ -72,16 +72,12 @@ const ServicesSection = () => {
               className="group relative rounded-lg lg:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 p-3 md:p-4 hover:bg-white/15 hover:border-[#d5a028]/50 hover:-translate-y-1 transition-all duration-300 cursor-pointer text-center"
             >
               {/* Icon */}
-              <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mb-3 group-hover:scale-110 transition-all mx-auto overflow-hidden">
-                <div 
-                  className="w-full h-full bg-no-repeat"
-                  style={{
-                    backgroundImage: "url('/images/icons.jpeg')",
-                    backgroundSize: "300%",
-                    backgroundPosition: service.iconPosition,
-                  }}
-                />
-              </div>
+              <ServiceIcon
+                title={service.title}
+                iconSrc={"iconSrc" in service ? service.iconSrc : undefined}
+                iconPosition={"iconPosition" in service ? service.iconPosition : undefined}
+                className="mb-3 mx-auto group-hover:scale-110 transition-transform"
+              />
 
               {/* Title */}
               <h3 className="text-xs sm:text-sm md:text-base font-bold text-white mb-1.5 group-hover:text-[#f4c430] transition-colors">
