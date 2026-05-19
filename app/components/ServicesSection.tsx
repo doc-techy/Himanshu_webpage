@@ -44,7 +44,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-12 md:py-16 lg:min-h-screen lg:h-screen lg:py-0 overflow-hidden lg:flex lg:items-center">
+    <section id="services" className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] py-12 md:py-16 lg:py-20 overflow-x-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-20 w-72 h-72 bg-[#d5a028]/10 rounded-full blur-3xl"></div>
@@ -87,7 +87,7 @@ const ServicesSection = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-white/95 font-medium leading-relaxed line-clamp-3 sm:line-clamp-2 [text-shadow:0_1px_2px_rgba(0,0,0,0.25)]">
+              <p className="text-xs sm:text-sm text-white/95 font-medium leading-relaxed [text-shadow:0_1px_2px_rgba(0,0,0,0.25)]">
                 {service.description}
               </p>
 
