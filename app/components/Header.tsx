@@ -3,10 +3,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-const HEADER_LOGO_SRC = "/images/recover-clinic-logo.png";
+import { useSiteVariant } from "../context/SiteVariantContext";
+import { isDrSinghSite } from "../lib/site";
+import { RECOVER_LOCATION, SPARSH_LOCATION } from "../lib/locations";
 
 const Header = () => {
+  const siteVariant = useSiteVariant();
+  const showDualBranding = isDrSinghSite(siteVariant);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -58,15 +61,42 @@ const Header = () => {
       
       <div className="mx-auto w-full max-w-7xl px-3 py-0.5 sm:px-4 sm:py-1 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity min-w-0 max-w-[62%] sm:max-w-none">
-            <Image
-              src={HEADER_LOGO_SRC}
-              alt="Recover Clinic — Orthopaedics & Limb Reconstruction"
-              width={360}
-              height={90}
-              className="h-12 w-auto sm:h-14 md:h-[3.75rem] lg:h-16 object-contain object-left"
-              priority
-            />
+          <Link
+            href="/"
+            className={`flex items-center hover:opacity-90 transition-opacity min-w-0 ${
+              showDualBranding ? "max-w-[78%] sm:max-w-[70%] md:max-w-none gap-2 sm:gap-3" : "max-w-[62%] sm:max-w-none"
+            }`}
+          >
+            {showDualBranding ? (
+              <>
+                <Image
+                  src={RECOVER_LOCATION.logoSrc}
+                  alt={RECOVER_LOCATION.logoAlt}
+                  width={280}
+                  height={72}
+                  className="h-10 w-auto sm:h-12 md:h-14 object-contain object-left"
+                  priority
+                />
+                <span className="h-8 sm:h-10 w-px bg-[#0b6f66]/20 shrink-0" aria-hidden />
+                <Image
+                  src={SPARSH_LOCATION.logoSrc}
+                  alt={SPARSH_LOCATION.logoAlt}
+                  width={120}
+                  height={48}
+                  className="h-9 w-auto sm:h-11 md:h-12 object-contain object-left"
+                  priority
+                />
+              </>
+            ) : (
+              <Image
+                src={RECOVER_LOCATION.logoSrc}
+                alt={RECOVER_LOCATION.logoAlt}
+                width={360}
+                height={90}
+                className="h-12 w-auto sm:h-14 md:h-[3.75rem] lg:h-16 object-contain object-left"
+                priority
+              />
+            )}
           </Link>
 
           {/* Desktop Navigation */}

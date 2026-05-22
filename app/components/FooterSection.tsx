@@ -1,7 +1,67 @@
+"use client";
+
 import Link from "next/link";
-import { PHONE_RECOVER_DISPLAY, PHONE_RECOVER_TEL } from "../constants/phones";
+import { useSiteVariant } from "../context/SiteVariantContext";
+import { isDrSinghSite } from "../lib/site";
+import { RECOVER_LOCATION, SPARSH_LOCATION } from "../lib/locations";
+
+function FooterAddressBlock({
+  title,
+  addressLines,
+  phoneTel,
+  phoneDisplay,
+  mapUrl,
+}: {
+  title: string;
+  addressLines: readonly string[];
+  phoneTel: string;
+  phoneDisplay: string;
+  mapUrl: string;
+}) {
+  return (
+    <div className="space-y-3">
+      <p className="text-sm font-bold text-[#d5a028]">{title}</p>
+      <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all">
+        <svg className="h-5 w-5 mt-0.5 flex-shrink-0 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <span>
+          {addressLines.map((line, i) => (
+            <span key={line}>
+              {line}
+              {i < addressLines.length - 1 && <br />}
+            </span>
+          ))}
+        </span>
+      </div>
+      <a
+        href={`tel:${phoneTel}`}
+        className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all group"
+      >
+        <svg className="h-5 w-5 flex-shrink-0 text-[#d5a028] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        <span className="font-semibold">{phoneDisplay}</span>
+      </a>
+      <a
+        href={mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 text-sm font-semibold text-[#d5a028] hover:text-[#f4c430] transition-colors"
+      >
+        Open in Maps
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+  );
+}
 
 const FooterSection = () => {
+  const siteVariant = useSiteVariant();
+  const showDualBranding = isDrSinghSite(siteVariant);
   return (
     <footer className="relative w-full bg-gradient-to-br from-[#0b6f66] via-[#0a5d54] to-[#0b6f66] text-white border-t-4 border-[#d5a028] overflow-hidden">
       {/* Dark overlay */}
@@ -139,31 +199,39 @@ const FooterSection = () => {
             </div>
           </div>
 
-          {/* Contact Info - Hidden on mobile */}
-          <div className="hidden lg:block space-y-4">
+          {/* Contact Info */}
+          <div className={`space-y-4 ${showDualBranding ? "lg:col-span-2" : "hidden lg:block"}`}>
             <div className="mb-2">
               <h3 className="text-xl font-bold text-[#d5a028] mb-2">Contact Information</h3>
               <div className="w-12 h-0.5 bg-[#d5a028]"></div>
             </div>
             <div className="space-y-4 text-sm text-white/90">
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all">
-                <svg className="h-5 w-5 mt-0.5 flex-shrink-0 text-[#d5a028]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>
-                  Recover Clinic, 34, 50 feet road,<br />
-                  NGEF Layout, Postal Colony,<br />
-                  Sanjayanagara, Bengaluru,<br />
-                  Karnataka 560094
-                </span>
-              </div>
-              <a href={`tel:${PHONE_RECOVER_TEL}`} className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all group">
-                <svg className="h-5 w-5 flex-shrink-0 text-[#d5a028] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <span className="font-semibold">{PHONE_RECOVER_DISPLAY}</span>
-              </a>
+              {showDualBranding ? (
+                <>
+                  <FooterAddressBlock
+                    title={RECOVER_LOCATION.name}
+                    addressLines={RECOVER_LOCATION.addressLines}
+                    phoneTel={RECOVER_LOCATION.phoneTel}
+                    phoneDisplay={RECOVER_LOCATION.phoneDisplay}
+                    mapUrl={RECOVER_LOCATION.mapUrl}
+                  />
+                  <FooterAddressBlock
+                    title={SPARSH_LOCATION.name}
+                    addressLines={SPARSH_LOCATION.addressLines}
+                    phoneTel={SPARSH_LOCATION.phoneTel}
+                    phoneDisplay={SPARSH_LOCATION.phoneDisplay}
+                    mapUrl={SPARSH_LOCATION.mapUrl}
+                  />
+                </>
+              ) : (
+                <FooterAddressBlock
+                  title={RECOVER_LOCATION.name}
+                  addressLines={RECOVER_LOCATION.addressLines}
+                  phoneTel={RECOVER_LOCATION.phoneTel}
+                  phoneDisplay={RECOVER_LOCATION.phoneDisplay}
+                  mapUrl={RECOVER_LOCATION.mapUrl}
+                />
+              )}
               <a href="mailto:doctorsingh@live.com" className="flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all group">
                 <svg className="h-5 w-5 flex-shrink-0 text-[#d5a028] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -177,8 +245,11 @@ const FooterSection = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-            <p className="text-sm text-white/80">
-              © {new Date().getFullYear()} Recover Clinic. All Rights Reserved.
+            <p className="text-sm text-white/80 text-center">
+              © {new Date().getFullYear()}{" "}
+              {showDualBranding
+                ? "Dr. Himanshu Singh · Recover Clinic & Sparsh Hospital. All Rights Reserved."
+                : "Recover Clinic. All Rights Reserved."}
             </p>
           </div>
         </div>
