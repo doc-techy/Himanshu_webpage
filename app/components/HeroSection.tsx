@@ -2,6 +2,9 @@
 
 import { WHATSAPP_URL } from "../constants/phones";
 
+const HERO_TITLE_GRADIENT =
+  "text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]";
+
 const HeroSection = () => {
   return (
     <section id="home" className="relative w-full min-h-[100dvh] bg-[#1e2626] overflow-hidden flex items-center">
@@ -46,11 +49,21 @@ const HeroSection = () => {
           </div>
 
           {/* Main Title */}
-          <div className="relative mb-3 sm:mb-6 md:mb-8 w-full">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight">
-              <span className="block whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]">Advanced Orthopaedic</span>
-              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]">&amp;</span>
-              <span className="block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#0b6f66] via-[#d5a028] to-[#f4c430]">Limb Reconstruction</span>
+          <div className="relative mb-3 sm:mb-6 md:mb-8 w-full overflow-visible">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.95] tracking-tight overflow-visible">
+              <span className={`block text-balance pr-[0.08em] ${HERO_TITLE_GRADIENT}`}>
+                Advanced Orthopaedic
+              </span>
+              <span
+                className={`block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl pr-[0.08em] ${HERO_TITLE_GRADIENT}`}
+              >
+                &amp;
+              </span>
+              <span
+                className={`block mt-1 md:mt-2 text-[30px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-balance pr-[0.08em] ${HERO_TITLE_GRADIENT}`}
+              >
+                Limb Reconstruction
+              </span>
             </h1>
           </div>
 
