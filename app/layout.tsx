@@ -4,7 +4,9 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { WHATSAPP_URL } from "./constants/phones";
 import { SiteVariantProvider } from "./context/SiteVariantContext";
-import { getMetadataForVariant, getSiteVariant } from "./lib/site";
+import StructuredData from "./components/StructuredData";
+import { getHomeMetadata } from "./lib/seo";
+import { getSiteVariant } from "./lib/site";
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -30,7 +32,7 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata(): Promise<Metadata> {
   const host = (await headers()).get("host") ?? "";
-  return getMetadataForVariant(getSiteVariant(host));
+  return getHomeMetadata(host);
 }
 
 export default async function RootLayout({
@@ -46,6 +48,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${openSans.variable} antialiased`}
       >
+        <StructuredData hostname={host} />
         <SiteVariantProvider variant={siteVariant}>{children}</SiteVariantProvider>
         
         {/* Floating Social Media Sidebar - Desktop */}

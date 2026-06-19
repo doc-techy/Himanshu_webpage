@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
+import { getVideosMetadata } from "../lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get("host") ?? "";
+  return getVideosMetadata(host);
+}
 
 export default function VideosPage() {
   const videos = [

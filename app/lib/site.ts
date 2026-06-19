@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-
 export type SiteVariant = "recover" | "drSingh";
 
 export function getSiteVariant(hostname: string): SiteVariant {
@@ -17,21 +15,4 @@ export function getSiteVariant(hostname: string): SiteVariant {
 
 export function isDrSinghSite(variant: SiteVariant): boolean {
   return variant === "drSingh";
-}
-
-const METADATA_BY_VARIANT: Record<SiteVariant, Metadata> = {
-  recover: {
-    title: "Recover Clinic | Orthopaedics & Limb Reconstruction Bangalore",
-    description:
-      "Recover Clinic — advanced orthopaedic & robotic surgery in Bangalore. Joint replacement, limb reconstruction, sports medicine by Dr. Himanshu Singh.",
-  },
-  drSingh: {
-    title: "Dr. Himanshu Singh | Orthopaedics — Recover Clinic & Sparsh Hospital Bangalore",
-    description:
-      "Dr. Himanshu Singh — orthopaedic surgeon at Recover Clinic (Sanjaynagar) and Sparsh Hospital (Hennur). Joint replacement, arthroscopy, limb reconstruction.",
-  },
-};
-
-export function getMetadataForVariant(variant: SiteVariant): Metadata {
-  return METADATA_BY_VARIANT[variant];
 }

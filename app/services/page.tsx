@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import Header from "../components/Header";
 import FooterSection from "../components/FooterSection";
 import ServiceIcon, { ILIZAROV_IMAGE_SCALE } from "../components/ServiceIcon";
+import { getServicesMetadata } from "../lib/seo";
 import { PHONE_SPARSH_DISPLAY, PHONE_SPARSH_TEL, WHATSAPP_URL } from "../constants/phones";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get("host") ?? "";
+  return getServicesMetadata(host);
+}
 
 export default function ServicesPage() {
   const services = [
